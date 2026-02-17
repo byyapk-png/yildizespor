@@ -12,8 +12,8 @@
             --gold-glow: rgba(255, 215, 0, 0.6);
             --dark-base: #050505;
             --glass-bg: rgba(20, 20, 20, 0.85);
-            --glass-border: rgba(255, 215, 0, 0.3);
-            --neon-blue: #00f3ff; /* Ufak siber dokunuşlar için */
+            --neon-blue: #00f3ff;
+            --neon-red: #ff0055;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -22,23 +22,14 @@
             font-family: 'Rajdhani', sans-serif; 
             background-color: var(--dark-base); 
             color: white; 
-            height: 100vh; 
-            overflow: hidden; 
-            background-image: 
-                radial-gradient(circle at 50% 50%, rgba(20, 20, 30, 0.8), #000),
-                url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=2070');
-            background-size: cover;
-            background-blend-mode: overlay;
-            display: flex;
-            flex-direction: column;
+            overflow-x: hidden; 
+            background-image: radial-gradient(circle at 50% 50%, rgba(20, 20, 30, 0.8), #000);
         }
 
-        /* Işıltı Animasyonu */
-        @keyframes shine {
-            0% { box-shadow: 0 0 5px var(--gold-glow); border-color: rgba(255, 215, 0, 0.3); }
-            50% { box-shadow: 0 0 20px var(--gold-glow); border-color: var(--gold-primary); }
-            100% { box-shadow: 0 0 5px var(--gold-glow); border-color: rgba(255, 215, 0, 0.3); }
-        }
+        /* Scrollbar Tasarımı */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #111; }
+        ::-webkit-scrollbar-thumb { background: var(--gold-primary); border-radius: 4px; }
 
         /* Header */
         header {
@@ -46,255 +37,203 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(0, 0, 0, 0.8);
-            border-bottom: 1px solid var(--glass-border);
+            background: rgba(0, 0, 0, 0.9);
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+            position: sticky; top: 0; z-index: 100;
             backdrop-filter: blur(10px);
-            z-index: 10;
         }
         .logo { 
-            font-family: 'Orbitron', sans-serif; 
-            font-size: 1.8rem; 
-            font-weight: 900;
-            background: linear-gradient(to right, #FFD700, #FDB931, #FFD700);
-            -webkit-background-clip: text;
-            color: transparent;
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+            font-family: 'Orbitron', sans-serif; font-size: 1.5rem; font-weight: 900;
+            color: var(--gold-primary); text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
         }
-        .status-badge {
-            background: rgba(0, 243, 255, 0.1);
-            border: 1px solid var(--neon-blue);
-            color: var(--neon-blue);
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: bold;
-            letter-spacing: 1px;
-            box-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
+        .nav-btn {
+            background: transparent; border: 1px solid var(--gold-primary);
+            color: var(--gold-primary); padding: 8px 20px;
+            font-family: 'Orbitron'; cursor: pointer; transition: 0.3s;
+            text-decoration: none; font-size: 0.9rem;
         }
+        .nav-btn:hover { background: var(--gold-primary); color: black; box-shadow: 0 0 15px var(--gold-glow); }
 
-        /* Ana İçerik Alanı */
-        .main-container {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 0 4%;
-            gap: 20px;
+        /* Ana Container */
+        .container { max-width: 1400px; margin: 0 auto; padding: 20px 4%; }
+
+        /* Bölüm Başlıkları */
+        .section-title {
+            font-family: 'Orbitron'; font-size: 2rem; color: white;
+            text-align: center; margin: 50px 0 30px;
+            text-transform: uppercase; letter-spacing: 2px;
             position: relative;
-            z-index: 5;
+        }
+        .section-title::after {
+            content: ''; display: block; width: 60px; height: 3px;
+            background: var(--gold-primary); margin: 10px auto 0;
+            box-shadow: 0 0 10px var(--gold-glow);
         }
 
-        /* Bonus Paneli (HUD Tarzı) */
+        /* Bonus Paneli */
         .bonus-panel {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            background: linear-gradient(90deg, transparent, rgba(0,0,0,0.9), transparent);
-            padding: 10px;
-            margin-bottom: 10px;
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-bottom: 40px;
         }
         .bonus-chip {
-            background: rgba(20, 20, 20, 0.9);
-            border: 1px solid #333;
-            border-left: 3px solid var(--gold-primary);
-            padding: 8px 20px;
-            min-width: 140px;
-            text-align: center;
-            transform: skewX(-10deg); /* Oyuncu tarzı yamuk kutular */
+            background: rgba(20, 20, 20, 0.9); border: 1px solid #333;
+            border-left: 3px solid var(--gold-primary); padding: 10px 20px;
+            min-width: 140px; text-align: center; transform: skewX(-10deg);
             transition: 0.3s;
         }
-        .bonus-chip:hover {
-            border-color: var(--gold-primary);
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
-            transform: skewX(-10deg) translateY(-5px);
-        }
-        .bonus-chip .amount { font-family: 'Orbitron'; font-size: 1.1rem; color: white; display: block; }
-        .bonus-chip .gift { color: var(--gold-primary); font-weight: bold; font-size: 0.9rem; text-shadow: 0 0 5px var(--gold-glow); }
+        .bonus-chip:hover { border-color: var(--gold-primary); transform: skewX(-10deg) translateY(-5px); }
+        .bonus-chip .amount { font-family: 'Orbitron'; font-size: 1.2rem; color: white; display: block; }
+        .bonus-chip .gift { color: var(--gold-primary); font-weight: bold; font-size: 0.9rem; }
 
-        /* Fiyat Kartları (Glassmorphism) */
-        .cards-wrapper {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-        }
+        /* Fiyat Kartları */
+        .cards-wrapper { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
         .price-card {
-            background: rgba(15, 15, 20, 0.7);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 20px;
-            text-align: center;
-            position: relative;
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            overflow: hidden;
+            background: rgba(15, 15, 20, 0.7); backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 15px;
+            padding: 20px; text-align: center; position: relative; transition: 0.4s;
         }
-        
-        .price-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 4px;
-            background: #333;
-        }
-        
-        /* Kart Seviyeleri */
-        .price-card.silver::before { background: linear-gradient(90deg, #bdc3c7, #fff); }
-        .price-card.gold::before { background: linear-gradient(90deg, #FDB931, #FFD700); }
-        .price-card.platinum::before { background: linear-gradient(90deg, #00f3ff, #fff); }
-        .price-card.diamond { 
-            border: 1px solid var(--gold-primary);
-            background: rgba(20, 15, 5, 0.85);
-            box-shadow: 0 0 25px rgba(0,0,0,0.5);
-            animation: shine 3s infinite;
-        }
-        .price-card.diamond::before { background: linear-gradient(90deg, #ff0055, #FFD700); height: 4px; }
-
-        .price-card:hover { transform: translateY(-10px) scale(1.02); z-index: 10; background: rgba(25, 25, 35, 0.9); }
-
-        .card-title { font-family: 'Orbitron'; font-size: 1.4rem; margin-bottom: 15px; letter-spacing: 1px; color: #eee; }
-        .diamond .card-title { color: var(--gold-primary); text-shadow: 0 0 10px var(--gold-glow); }
-
-        .specs-list { list-style: none; text-align: left; margin-bottom: 20px; padding-left: 10px; }
-        .specs-list li { 
-            font-size: 0.9rem; 
-            color: #ccc; 
-            margin-bottom: 8px; 
-            display: flex; 
-            align-items: center; 
-            gap: 8px;
-        }
-        .specs-list i { color: var(--gold-primary); font-size: 0.8rem; }
-        .diamond .specs-list li { color: white; }
-
-        .price-tag {
-            font-family: 'Orbitron';
-            font-size: 2.2rem;
-            font-weight: bold;
-            color: white;
-            text-shadow: 2px 2px 0px #000;
-        }
+        .price-card:hover { transform: translateY(-10px); background: rgba(25, 25, 35, 0.9); border-color: var(--gold-primary); }
+        .price-card.diamond { border: 1px solid var(--gold-primary); box-shadow: 0 0 20px rgba(255, 215, 0, 0.1); }
+        .card-title { font-family: 'Orbitron'; font-size: 1.4rem; margin-bottom: 15px; color: #eee; }
+        .diamond .card-title { color: var(--gold-primary); }
+        .specs-list { list-style: none; text-align: left; margin-bottom: 20px; padding-left: 10px; color: #ccc; font-size: 0.9rem; }
+        .specs-list li { margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+        .specs-list i { color: var(--gold-primary); }
+        .price-tag { font-family: 'Orbitron'; font-size: 2.2rem; font-weight: bold; color: white; }
         .currency { font-size: 1rem; color: #aaa; vertical-align: super; }
 
-        /* Hero / Footer Alanı */
-        .bottom-hero {
-            height: 25vh;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 5%;
-            background: linear-gradient(to top, #000, transparent);
-            border-top: 1px solid rgba(255, 215, 0, 0.1);
-            position: relative;
+        /* --- YENİ: TURNUVA BÖLÜMÜ --- */
+        .tournament-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+        .tour-card {
+            background: linear-gradient(180deg, rgba(20,20,20,0) 0%, rgba(10,10,10,0.9) 100%), url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1000');
+            background-size: cover; height: 200px; border-radius: 10px;
+            display: flex; flex-direction: column; justify-content: flex-end; padding: 20px;
+            position: relative; overflow: hidden; border: 1px solid #333; transition: 0.3s;
         }
-        .hero-text h1 {
-            font-family: 'Orbitron';
-            font-size: 3.5rem;
-            text-transform: uppercase;
-            line-height: 1;
-            background: -webkit-linear-gradient(#fff, #999);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .tour-card:hover { border-color: var(--neon-blue); box-shadow: 0 0 15px rgba(0, 243, 255, 0.3); }
+        .tour-status {
+            position: absolute; top: 15px; right: 15px;
+            padding: 5px 10px; border-radius: 4px; font-weight: bold; font-size: 0.8rem;
         }
-        .hero-text p { font-size: 1.2rem; color: var(--gold-primary); letter-spacing: 3px; margin-top: 5px; }
+        .status-active { background: var(--neon-blue); color: black; }
+        .status-soon { background: var(--gold-primary); color: black; }
         
-        .contact-info {
-            text-align: right;
-            font-size: 0.9rem;
-            color: #888;
+        .tour-info h3 { font-family: 'Orbitron'; font-size: 1.5rem; text-shadow: 2px 2px 4px black; }
+        .tour-info p { color: #ddd; font-size: 0.9rem; margin-bottom: 10px; }
+        .join-btn {
+            background: rgba(0,0,0,0.7); border: 1px solid white; color: white;
+            padding: 5px 15px; cursor: pointer; transition: 0.3s; text-transform: uppercase;
         }
-        .contact-info i { color: var(--gold-primary); margin-right: 5px; }
+        .join-btn:hover { background: white; color: black; }
 
+        /* --- YENİ: REZERVASYON ALANI --- */
+        .reservation-hero {
+            background: linear-gradient(90deg, #111, #222);
+            padding: 40px; border-radius: 20px; display: flex; align-items: center; justify-content: space-between;
+            border: 1px solid #333; margin-top: 50px;
+        }
+        .res-text h2 { font-family: 'Orbitron'; font-size: 2rem; color: var(--gold-primary); margin-bottom: 10px; }
+        .res-text p { color: #ccc; max-width: 500px; }
+        .whatsapp-btn {
+            background: #25D366; color: white; padding: 15px 40px;
+            font-size: 1.2rem; font-weight: bold; border-radius: 50px; text-decoration: none;
+            display: flex; align-items: center; gap: 10px; transition: 0.3s;
+            box-shadow: 0 0 20px rgba(37, 211, 102, 0.3);
+        }
+        .whatsapp-btn:hover { transform: scale(1.05); box-shadow: 0 0 30px rgba(37, 211, 102, 0.6); }
+
+        footer { text-align: center; padding: 40px; border-top: 1px solid #222; margin-top: 50px; color: #555; font-size: 0.9rem; }
+        footer i { color: var(--gold-primary); }
+
+        /* Mobil Düzenleme */
+        @media (max-width: 768px) {
+            .reservation-hero { flex-direction: column; text-align: center; gap: 20px; }
+            .section-title { font-size: 1.5rem; }
+        }
     </style>
 </head>
 <body>
 
 <header>
     <div class="logo">YILDIZ E-SPOR</div>
-    <div class="status-badge"><i class="fas fa-wifi"></i> GİGABİT FİBER AKTİF</div>
+    <a href="#rezervasyon" class="nav-btn">REZERVASYON YAP</a>
 </header>
 
-<div class="main-container">
+<div class="container">
     
+    <div class="section-title">BONUS SİSTEMİ</div>
     <div class="bonus-panel">
-        <div class="bonus-chip">
-            <span class="amount">100 TL</span>
-            <span class="gift">+10 TL HEDİYE</span>
-        </div>
-        <div class="bonus-chip">
-            <span class="amount">200 TL</span>
-            <span class="gift">+40 TL HEDİYE</span>
-        </div>
-        <div class="bonus-chip">
-            <span class="amount">500 TL</span>
-            <span class="gift">+125 TL HEDİYE</span>
-        </div>
-        <div class="bonus-chip">
-            <span class="amount">750 TL</span>
-            <span class="gift">+225 TL HEDİYE</span>
-        </div>
-        <div class="bonus-chip" style="border-color: var(--gold-primary);">
-            <span class="amount">1000 TL</span>
-            <span class="gift">+300 TL HEDİYE</span>
-        </div>
+        <div class="bonus-chip"><span class="amount">100 TL</span><span class="gift">+10 TL BONUS</span></div>
+        <div class="bonus-chip"><span class="amount">200 TL</span><span class="gift">+40 TL BONUS</span></div>
+        <div class="bonus-chip"><span class="amount">500 TL</span><span class="gift">+125 TL BONUS</span></div>
+        <div class="bonus-chip" style="border-color: var(--gold-primary);"><span class="amount">1000 TL</span><span class="gift">+300 TL BONUS</span></div>
     </div>
 
+    <div class="section-title">OYUN İSTASYONLARI</div>
     <div class="cards-wrapper">
-        <div class="price-card silver">
+        <div class="price-card">
             <div class="card-title">SILVER</div>
             <ul class="specs-list">
                 <li><i class="fas fa-desktop"></i> 280Hz Asus Monitör</li>
-                <li><i class="fas fa-microchip"></i> Intel Core i5</li>
-                <li><i class="fas fa-memory"></i> RTX 3060</li>
-                <li><i class="fas fa-mouse"></i> Gaming Set</li>
+                <li><i class="fas fa-microchip"></i> RTX 3060 / i5</li>
             </ul>
             <div class="price-tag">35<span class="currency">₺</span></div>
         </div>
-
-        <div class="price-card gold">
+        <div class="price-card">
             <div class="card-title">GOLD</div>
             <ul class="specs-list">
                 <li><i class="fas fa-desktop"></i> 280Hz Asus Monitör</li>
-                <li><i class="fas fa-microchip"></i> Ryzen 7 7800X3D</li>
-                <li><i class="fas fa-memory"></i> RTX 4060 Ti</li>
-                <li><i class="fas fa-crown"></i> Özel Geniş Masa</li>
+                <li><i class="fas fa-microchip"></i> RTX 4060 Ti / 7800X3D</li>
             </ul>
             <div class="price-tag">45<span class="currency">₺</span></div>
         </div>
-
-        <div class="price-card platinum">
-            <div class="card-title">PLATINUM</div>
-            <ul class="specs-list">
-                <li><i class="fas fa-desktop"></i> 360Hz Asus Monitör</li>
-                <li><i class="fas fa-microchip"></i> Ryzen 7 7800X3D</li>
-                <li><i class="fas fa-memory"></i> RTX 4060 Ti</li>
-                <li><i class="fas fa-headset"></i> Kablosuz ATK Set</li>
-            </ul>
-            <div class="price-tag">50<span class="currency">₺</span></div>
-        </div>
-
         <div class="price-card diamond">
-            <div class="card-title"><i class="fas fa-gem"></i> DIAMOND</div>
+            <div class="card-title"><i class="fas fa-crown"></i> DIAMOND VIP</div>
             <ul class="specs-list">
                 <li><i class="fas fa-desktop"></i> 540Hz Asus Monitör</li>
-                <li><i class="fas fa-microchip"></i> Ryzen 7 7800X3D</li>
-                <li><i class="fas fa-memory"></i> RTX 4060 Ti</li>
-                <li><i class="fas fa-couch"></i> VIP Oyuncu Odası</li>
+                <li><i class="fas fa-microchip"></i> RTX 4060 Ti / 7800X3D</li>
+                <li><i class="fas fa-couch"></i> Özel VIP Oda</li>
             </ul>
             <div class="price-tag">60<span class="currency">₺</span></div>
         </div>
     </div>
+
+    <div class="section-title">TURNUVA ARENASI</div>
+    <div class="tournament-grid">
+        <div class="tour-card" style="background-image: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.9) 100%), url('https://w0.peakpx.com/wallpaper/419/55/HD-wallpaper-valorant-game-poster.jpg');">
+            <span class="tour-status status-active">KAYITLAR AÇIK</span>
+            <div class="tour-info">
+                <h3>VALORANT HAFTALIK</h3>
+                <p>Ödül Havuzu: 5.000 TL + 10 Saat Bonus</p>
+                <button class="join-btn">Detaylar</button>
+            </div>
+        </div>
+        <div class="tour-card" style="background-image: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.9) 100%), url('https://wallpapers.com/images/hd/cs-go-4k-gaming-wz55702657j4y6j8.jpg');">
+            <span class="tour-status status-soon">YAKINDA</span>
+            <div class="tour-info">
+                <h3>CS2 ERZURUM LİGİ</h3>
+                <p>Büyük Ödül ve Sponsorluk Şansı</p>
+                <button class="join-btn">Takip Et</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="rezervasyon" class="reservation-hero">
+        <div class="res-text">
+            <h2>BEKLEMEK YOK!</h2>
+            <p>Diamond VIP veya Gold masalar için yerini şimdiden ayırt, geldiğinde sistemin hazır olsun.</p>
+        </div>
+        <a href="https://wa.me/905XXXXXXXXXX?text=Merhaba,%20Yıldız%20E-Spor%20için%20rezervasyon%20yapmak%20istiyorum." target="_blank" class="whatsapp-btn">
+            <i class="fab fa-whatsapp"></i> WHATSAPP İLE REZERVE ET
+        </a>
+    </div>
+
 </div>
 
-<div class="bottom-hero">
-    <div class="hero-text">
-        <h1>SINIRLARI<br>ZORLA</h1>
-        <p>ERZURUM'UN EN GÜÇLÜ OYUN ARENASI</p>
-    </div>
-    <div class="contact-info">
-        <p><i class="fas fa-map-marker-alt"></i> Yakutiye, Erzurum</p>
-        <p><i class="fas fa-print"></i> 3D Baskı Hizmeti (Bambu Lab)</p>
-        <p style="margin-top:5px; color:#555;">© 2026 Yıldız E-Spor</p>
-    </div>
-</div>
+<footer>
+    <p>Yakutiye, Erzurum | Yıldız E-Spor Merkezi</p>
+    <p><i class="fas fa-print"></i> 3D Baskı ve Modelleme Hizmetimiz Vardır (Bambu Lab A1)</p>
+    <p style="margin-top: 10px; font-size: 0.8rem; opacity: 0.6;">© 2026 Tüm Hakları Saklıdır.</p>
+</footer>
 
 </body>
 </html>
