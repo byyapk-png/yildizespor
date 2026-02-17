@@ -4,261 +4,836 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yıldız E-Spor | Elite Gaming Center</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Exo+2:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
         :root {
-            --gold-primary: #FFD700;
-            --gold-glow: rgba(255, 215, 0, 0.6);
-            --dark-base: #050505;
-            --glass-bg: rgba(20, 20, 20, 0.85);
-            --neon-blue: #00f3ff;
-            --neon-red: #ff0055;
+            --neon-cyan: #00f0ff;
+            --neon-magenta: #ff00e5;
+            --neon-yellow: #ffe600;
+            --neon-green: #39ff14;
+            --dark-bg: #0a0a0f;
+            --card-bg: #12121c;
+            --card-border: #1e1e2e;
+            --text-primary: #e8e8f0;
+            --text-muted: #7a7a9a;
+            --silver: #a8b5c8;
+            --gold: #ffd700;
+            --platinum: #b4c8e0;
+            --diamond: #b9f2ff;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body { 
-            font-family: 'Rajdhani', sans-serif; 
-            background-color: var(--dark-base); 
-            color: white; 
-            overflow-x: hidden; 
-            background-image: radial-gradient(circle at 50% 50%, rgba(20, 20, 30, 0.8), #000);
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
         }
 
-        /* Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #111; }
-        ::-webkit-scrollbar-thumb { background: var(--gold-primary); border-radius: 4px; }
+        /* ===== BACKGROUND GRID ===== */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background:
+                linear-gradient(rgba(0,240,255,.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,240,255,.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: 0;
+        }
 
-        /* Header */
-        header {
-            padding: 15px 4%;
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--dark-bg); }
+        ::-webkit-scrollbar-thumb { background: var(--neon-cyan); border-radius: 3px; }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            background: rgba(0, 0, 0, 0.9);
-            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
-            position: sticky; top: 0; z-index: 100;
-            backdrop-filter: blur(10px);
+            justify-content: space-between;
+            background: rgba(10,10,15,.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0,240,255,.1);
+            transition: all .3s;
         }
-        .logo { 
-            font-family: 'Orbitron', sans-serif; font-size: 1.5rem; font-weight: 900;
-            color: var(--gold-primary); text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
-        }
-        .nav-btn {
-            background: transparent; border: 1px solid var(--gold-primary);
-            color: var(--gold-primary); padding: 8px 20px;
-            font-family: 'Orbitron'; cursor: pointer; transition: 0.3s;
-            text-decoration: none; font-size: 0.9rem;
-        }
-        .nav-btn:hover { background: var(--gold-primary); color: black; box-shadow: 0 0 15px var(--gold-glow); }
 
-        /* Ana Container */
-        .container { max-width: 1400px; margin: 0 auto; padding: 20px 4%; }
+        .navbar.scrolled {
+            padding: .6rem 2rem;
+            background: rgba(10,10,15,.95);
+        }
 
-        .section-title {
-            font-family: 'Orbitron'; font-size: 2rem; color: white;
-            text-align: center; margin: 50px 0 30px;
-            text-transform: uppercase; letter-spacing: 2px;
+        .nav-logo {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 800;
+            font-size: 1.4rem;
+            color: var(--neon-cyan);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 20px rgba(0,240,255,.5);
+        }
+
+        .nav-logo span { color: var(--neon-magenta); }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-family: 'Exo 2', sans-serif;
+            font-weight: 500;
+            font-size: .95rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all .3s;
             position: relative;
         }
-        .section-title::after {
-            content: ''; display: block; width: 60px; height: 3px;
-            background: var(--gold-primary); margin: 10px auto 0;
-            box-shadow: 0 0 10px var(--gold-glow);
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px; left: 0;
+            width: 0; height: 2px;
+            background: var(--neon-cyan);
+            transition: width .3s;
+            box-shadow: 0 0 8px var(--neon-cyan);
         }
 
-        /* Bonus Paneli */
-        .bonus-panel {
-            display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 40px;
-        }
-        .bonus-chip {
-            background: rgba(20, 20, 20, 0.9); border: 1px solid #333;
-            border-left: 3px solid var(--gold-primary); padding: 10px 15px;
-            min-width: 130px; text-align: center; transform: skewX(-10deg);
-            transition: 0.3s;
-        }
-        .bonus-chip:hover { border-color: var(--gold-primary); transform: skewX(-10deg) translateY(-5px); }
-        .bonus-chip .amount { font-family: 'Orbitron'; font-size: 1.1rem; color: white; display: block; }
-        .bonus-chip .gift { color: var(--gold-primary); font-weight: bold; font-size: 0.8rem; }
+        .nav-links a:hover { color: var(--neon-cyan); }
+        .nav-links a:hover::after { width: 100%; }
 
-        /* Fiyat Kartları (4 Sütun) */
-        .cards-wrapper { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); 
-            gap: 20px; 
-        }
-        .price-card {
-            background: rgba(15, 15, 20, 0.7); backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 15px;
-            padding: 20px; text-align: center; position: relative; transition: 0.4s;
-            display: flex; flex-direction: column; justify-content: space-between;
-        }
-        .price-card:hover { transform: translateY(-10px); background: rgba(25, 25, 35, 0.9); border-color: var(--gold-primary); }
-        
-        .price-card.diamond { border: 1px solid var(--gold-primary); box-shadow: 0 0 20px rgba(255, 215, 0, 0.1); }
-        .price-card.diamond::before { 
-            content: 'VIP'; position: absolute; top: 10px; right: 10px; 
-            background: var(--gold-primary); color: black; padding: 2px 8px; 
-            font-size: 0.7rem; font-weight: bold; border-radius: 4px;
+        .nav-fiber {
+            background: rgba(57,255,20,.15);
+            border: 1px solid var(--neon-green);
+            color: var(--neon-green);
+            padding: .35rem .9rem;
+            border-radius: 4px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: .65rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            animation: fiberPulse 2s ease-in-out infinite;
         }
 
-        .card-title { font-family: 'Orbitron'; font-size: 1.3rem; margin-bottom: 15px; color: #eee; }
-        .diamond .card-title { color: var(--gold-primary); }
-        
-        .specs-list { list-style: none; text-align: left; margin-bottom: 20px; padding-left: 5px; color: #ccc; font-size: 0.85rem; }
-        .specs-list li { margin-bottom: 8px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 5px; }
-        .specs-list i { color: var(--gold-primary); width: 15px; }
-        
-        .price-tag { font-family: 'Orbitron'; font-size: 2rem; font-weight: bold; color: white; margin-top: auto; }
-        .currency { font-size: 1rem; color: #aaa; vertical-align: super; }
+        @keyframes fiberPulse {
+            0%, 100% { box-shadow: 0 0 5px rgba(57,255,20,.3); }
+            50% { box-shadow: 0 0 20px rgba(57,255,20,.6); }
+        }
 
-        /* Turnuvalar */
-        .tournament-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
-        .tour-card {
-            background-size: cover; height: 200px; border-radius: 10px;
-            display: flex; flex-direction: column; justify-content: flex-end; padding: 20px;
-            position: relative; overflow: hidden; border: 1px solid #333;
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 5px;
         }
-        .tour-status {
-            position: absolute; top: 15px; right: 15px;
-            padding: 5px 10px; border-radius: 4px; font-weight: bold; font-size: 0.8rem;
-        }
-        .status-active { background: var(--neon-blue); color: black; }
-        .status-soon { background: var(--gold-primary); color: black; }
-        
-        .tour-info h3 { font-family: 'Orbitron'; font-size: 1.5rem; text-shadow: 2px 2px 4px black; color: white; }
-        .tour-info p { color: #ddd; font-size: 0.9rem; margin-bottom: 10px; text-shadow: 1px 1px 2px black; }
-        .join-btn {
-            background: rgba(0,0,0,0.7); border: 1px solid white; color: white;
-            padding: 5px 15px; cursor: pointer; transition: 0.3s; text-transform: uppercase;
-        }
-        .join-btn:hover { background: white; color: black; }
 
-        /* Rezervasyon */
-        .reservation-hero {
-            background: linear-gradient(90deg, #111, #222);
-            padding: 40px; border-radius: 20px; display: flex; align-items: center; justify-content: space-between;
-            border: 1px solid #333; margin-top: 50px;
+        .hamburger span {
+            width: 28px; height: 2px;
+            background: var(--neon-cyan);
+            transition: all .3s;
         }
-        .res-text h2 { font-family: 'Orbitron'; font-size: 2rem; color: var(--gold-primary); margin-bottom: 10px; }
-        .res-text p { color: #ccc; max-width: 500px; }
-        .whatsapp-btn {
-            background: #25D366; color: white; padding: 15px 40px;
-            font-size: 1.2rem; font-weight: bold; border-radius: 50px; text-decoration: none;
-            display: flex; align-items: center; gap: 10px; transition: 0.3s;
-            box-shadow: 0 0 20px rgba(37, 211, 102, 0.3);
+
+        /* ===== HERO ===== */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            overflow: hidden;
         }
-        .whatsapp-btn:hover { transform: scale(1.05); box-shadow: 0 0 30px rgba(37, 211, 102, 0.6); }
 
-        footer { text-align: center; padding: 40px; border-top: 1px solid #222; margin-top: 50px; color: #555; font-size: 0.9rem; }
-        footer i { color: var(--gold-primary); }
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 20% 50%, rgba(0,240,255,.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 50%, rgba(255,0,229,.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 100%, rgba(57,255,20,.05) 0%, transparent 40%);
+            z-index: 0;
+        }
 
+        .hero-particles { position: absolute; inset: 0; z-index: 0; }
+
+        .particle {
+            position: absolute;
+            width: 2px; height: 2px;
+            background: var(--neon-cyan);
+            border-radius: 50%;
+            animation: float linear infinite;
+            opacity: 0;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+        }
+
+        .hero-content { position: relative; z-index: 1; max-width: 900px; }
+
+        .hero-badge {
+            display: inline-block;
+            font-family: 'Orbitron', sans-serif;
+            font-size: .7rem;
+            font-weight: 700;
+            letter-spacing: 4px;
+            color: var(--neon-cyan);
+            border: 1px solid rgba(0,240,255,.3);
+            padding: .5rem 1.5rem;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            animation: badgeGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes badgeGlow {
+            0%, 100% { box-shadow: 0 0 10px rgba(0,240,255,.1), inset 0 0 10px rgba(0,240,255,.05); }
+            50% { box-shadow: 0 0 30px rgba(0,240,255,.2), inset 0 0 20px rgba(0,240,255,.1); }
+        }
+
+        .hero-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #fff 0%, var(--neon-cyan) 50%, var(--neon-magenta) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: titleReveal 1.5s ease-out;
+        }
+
+        @keyframes titleReveal {
+            from { opacity: 0; transform: translateY(40px); filter: blur(10px); }
+            to { opacity: 1; transform: translateY(0); filter: blur(0); }
+        }
+
+        .hero-subtitle {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(1rem, 2.5vw, 1.6rem);
+            font-weight: 600;
+            color: var(--text-muted);
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            margin-bottom: 2.5rem;
+            animation: fadeUp 1.5s ease-out .3s both;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-tagline {
+            font-family: 'Exo 2', sans-serif;
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            animation: fadeUp 1.5s ease-out .6s both;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: .8rem;
+            font-family: 'Orbitron', sans-serif;
+            font-size: .85rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--dark-bg);
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-magenta));
+            border: none;
+            padding: 1rem 2.5rem;
+            cursor: pointer;
+            text-decoration: none;
+            clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+            transition: all .3s;
+            animation: fadeUp 1.5s ease-out .9s both;
+        }
+
+        .hero-cta:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(0,240,255,.4);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: .5rem;
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator span {
+            font-family: 'Exo 2', sans-serif;
+            font-size: .7rem;
+            letter-spacing: 3px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .scroll-arrow {
+            width: 20px; height: 20px;
+            border-right: 2px solid var(--neon-cyan);
+            border-bottom: 2px solid var(--neon-cyan);
+            transform: rotate(45deg);
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        /* ===== SECTIONS ===== */
+        section { position: relative; z-index: 1; padding: 6rem 2rem; }
+
+        .section-header { text-align: center; margin-bottom: 4rem; }
+
+        .section-label {
+            font-family: 'Orbitron', sans-serif;
+            font-size: .7rem;
+            font-weight: 700;
+            letter-spacing: 4px;
+            color: var(--neon-cyan);
+            text-transform: uppercase;
+            margin-bottom: .5rem;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .section-line {
+            width: 60px; height: 3px;
+            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta));
+            margin: 1rem auto 0;
+        }
+
+        /* ===== BAKIYE ===== */
+        .topup-section { background: linear-gradient(180deg, transparent, rgba(0,240,255,.02), transparent); }
+
+        .topup-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .topup-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 2rem 1.2rem;
+            text-align: center;
+            transition: all .4s cubic-bezier(.25,.8,.25,1);
+            clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+            cursor: pointer;
+        }
+
+        .topup-card:hover {
+            border-color: var(--neon-cyan);
+            transform: translateY(-6px);
+            box-shadow: 0 10px 40px rgba(0,240,255,.15);
+        }
+
+        .topup-amount {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: .3rem;
+        }
+
+        .topup-amount small { font-size: .9rem; font-weight: 600; color: var(--text-muted); }
+
+        .topup-bonus {
+            font-family: 'Orbitron', sans-serif;
+            font-size: .85rem;
+            font-weight: 700;
+            color: var(--neon-green);
+            background: rgba(57,255,20,.1);
+            padding: .3rem .8rem;
+            display: inline-block;
+            margin-top: .5rem;
+        }
+
+        /* ===== PC TIERS ===== */
+        .tiers-section { background: linear-gradient(180deg, transparent, rgba(255,0,229,.02), transparent); }
+
+        .tiers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .tier-card {
+            position: relative;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 2.5rem 2rem;
+            transition: all .5s cubic-bezier(.25,.8,.25,1);
+            overflow: hidden;
+        }
+
+        .tier-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            transition: all .5s;
+        }
+
+        .tier-card.silver::before { background: linear-gradient(90deg, var(--silver), transparent); }
+        .tier-card.gold::before { background: linear-gradient(90deg, var(--gold), transparent); }
+        .tier-card.platinum::before { background: linear-gradient(90deg, var(--platinum), #8b9dc3); }
+        .tier-card.diamond::before { background: linear-gradient(90deg, var(--diamond), var(--neon-cyan)); }
+
+        .tier-card:hover { transform: translateY(-8px); border-color: rgba(255,255,255,.15); }
+        .tier-card.silver:hover { box-shadow: 0 15px 50px rgba(168,181,200,.15); }
+        .tier-card.gold:hover { box-shadow: 0 15px 50px rgba(255,215,0,.15); }
+        .tier-card.platinum:hover { box-shadow: 0 15px 50px rgba(180,200,224,.15); }
+        .tier-card.diamond:hover { box-shadow: 0 15px 50px rgba(185,242,255,.2); }
+
+        .tier-icon {
+            width: 50px; height: 50px;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tier-card.silver .tier-icon svg { color: var(--silver); }
+        .tier-card.gold .tier-icon svg { color: var(--gold); }
+        .tier-card.platinum .tier-icon svg { color: var(--platinum); }
+        .tier-card.diamond .tier-icon svg { color: var(--diamond); }
+
+        .tier-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 1.5rem;
+        }
+
+        .tier-card.silver .tier-name { color: var(--silver); }
+        .tier-card.gold .tier-name { color: var(--gold); }
+        .tier-card.platinum .tier-name { color: var(--platinum); }
+        .tier-card.diamond .tier-name { color: var(--diamond); }
+
+        .tier-specs { list-style: none; margin-bottom: 2rem; }
+
+        .tier-specs li {
+            padding: .6rem 0;
+            border-bottom: 1px solid rgba(255,255,255,.04);
+            font-family: 'Exo 2', sans-serif;
+            font-size: .95rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+        }
+
+        .tier-specs li::before { content: '▹'; color: var(--neon-cyan); font-size: .8rem; }
+
+        .tier-price {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #fff;
+        }
+
+        .tier-price small { font-size: .9rem; color: var(--text-muted); font-weight: 500; }
+
+        .tier-card.diamond {
+            border-color: rgba(185,242,255,.15);
+            background: linear-gradient(135deg, var(--card-bg), rgba(185,242,255,.03));
+        }
+
+        .tier-badge {
+            position: absolute;
+            top: 1.2rem; right: 1.2rem;
+            font-family: 'Orbitron', sans-serif;
+            font-size: .55rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--dark-bg);
+            background: linear-gradient(135deg, var(--neon-cyan), var(--diamond));
+            padding: .3rem .8rem;
+            text-transform: uppercase;
+        }
+
+        /* ===== 3D PRINT ===== */
+        .print-section { background: linear-gradient(180deg, transparent, rgba(255,230,0,.02), transparent); }
+
+        .print-banner {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 3rem;
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            clip-path: polygon(0 0, calc(100% - 24px) 0, 100% 24px, 100% 100%, 24px 100%, 0 calc(100% - 24px));
+            transition: all .4s;
+        }
+
+        .print-banner:hover {
+            border-color: var(--neon-yellow);
+            box-shadow: 0 10px 50px rgba(255,230,0,.1);
+        }
+
+        .print-icon {
+            flex-shrink: 0;
+            width: 80px; height: 80px;
+            border: 2px solid var(--neon-yellow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .print-icon::before {
+            content: '3D';
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: var(--neon-yellow);
+            text-shadow: 0 0 20px rgba(255,230,0,.5);
+        }
+
+        .print-info h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: .5rem;
+        }
+
+        .print-info p { font-family: 'Exo 2', sans-serif; color: var(--text-muted); font-size: 1rem; }
+        .print-brand { color: var(--neon-yellow); font-weight: 600; }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--card-border);
+            background: rgba(10,10,15,.8);
+        }
+
+        .footer-logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--neon-cyan);
+            letter-spacing: 3px;
+            margin-bottom: .5rem;
+        }
+
+        .footer-location {
+            font-family: 'Exo 2', sans-serif;
+            color: var(--text-muted);
+            font-size: .9rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: .4rem;
+        }
+
+        .footer-location svg { width: 14px; height: 14px; }
+
+        .footer-copy {
+            font-family: 'Exo 2', sans-serif;
+            font-size: .75rem;
+            color: rgba(255,255,255,.2);
+            letter-spacing: 1px;
+        }
+
+        /* ===== REVEAL ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all .8s cubic-bezier(.25,.8,.25,1);
+        }
+
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
-            .reservation-hero { flex-direction: column; text-align: center; gap: 20px; }
-            .whatsapp-btn { width: 100%; justify-content: center; }
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+
+            .nav-links.active {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0; right: 0;
+                background: rgba(10,10,15,.97);
+                backdrop-filter: blur(20px);
+                padding: 1.5rem 2rem;
+                border-bottom: 1px solid var(--card-border);
+            }
+
+            .tiers-grid { grid-template-columns: 1fr; max-width: 400px; }
+
+            .print-banner {
+                flex-direction: column;
+                text-align: center;
+                padding: 2rem;
+                gap: 1.5rem;
+            }
+
+            .topup-grid { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
         }
     </style>
 </head>
 <body>
 
-<header>
-    <div class="logo">YILDIZ E-SPOR</div>
-    <a href="#rezervasyon" class="nav-btn">REZERVASYON YAP</a>
-</header>
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <a href="#" class="nav-logo">YILDIZ<span>.</span>ESPOR</a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#hero">Ana Sayfa</a></li>
+            <li><a href="#topup">Bakiye</a></li>
+            <li><a href="#tiers">Bilgisayarlar</a></li>
+            <li><a href="#print">3D Baskı</a></li>
+        </ul>
+        <div class="nav-fiber">GİGABİT FİBER AKTİF</div>
+        <button class="hamburger" id="hamburger" aria-label="Menü">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
 
-<div class="container">
-    
-    <div class="section-title">BONUS SİSTEMİ</div>
-    <div class="bonus-panel">
-        <div class="bonus-chip"><span class="amount">100 TL</span><span class="gift">+10 TL BONUS</span></div>
-        <div class="bonus-chip"><span class="amount">200 TL</span><span class="gift">+40 TL BONUS</span></div>
-        <div class="bonus-chip"><span class="amount">500 TL</span><span class="gift">+125 TL BONUS</span></div>
-        <div class="bonus-chip"><span class="amount">750 TL</span><span class="gift">+225 TL BONUS</span></div>
-        <div class="bonus-chip" style="border-color: var(--gold-primary);"><span class="amount">1000 TL</span><span class="gift">+300 TL BONUS</span></div>
-    </div>
-
-    <div class="section-title">OYUN İSTASYONLARI</div>
-    <div class="cards-wrapper">
-        <div class="price-card">
-            <div class="card-title">SILVER</div>
-            <ul class="specs-list">
-                <li><i class="fas fa-desktop"></i> 280Hz Asus Monitör</li>
-                <li><i class="fas fa-microchip"></i> RTX 3060 / Core i5</li>
-                <li><i class="fas fa-mouse"></i> Gaming Set</li>
-            </ul>
-            <div class="price-tag">35<span class="currency">₺</span></div>
+    <!-- HERO -->
+    <section class="hero" id="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-particles" id="particles"></div>
+        <div class="hero-content">
+            <div class="hero-badge">Erzurum'un En Güçlü Oyun Arenası</div>
+            <h1 class="hero-title">SINIRLARI<br>ZORLA</h1>
+            <p class="hero-subtitle">YILDIZ E-SPOR</p>
+            <p class="hero-tagline">540Hz monitörler · RTX serisi ekran kartları · Fiber altyapı · VIP odalar</p>
+            <a href="#tiers" class="hero-cta">
+                <span>Keşfet</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
         </div>
-
-        <div class="price-card" style="border-top: 3px solid #FDB931;">
-            <div class="card-title" style="color: #FDB931;">GOLD</div>
-            <ul class="specs-list">
-                <li><i class="fas fa-desktop"></i> 280Hz Asus Monitör</li>
-                <li><i class="fas fa-microchip"></i> RTX 4060 Ti / 7800X3D</li>
-                <li><i class="fas fa-crown"></i> VIP Ayrıcalığı</li>
-            </ul>
-            <div class="price-tag">45<span class="currency">₺</span></div>
+        <div class="scroll-indicator">
+            <span>Aşağı Kaydır</span>
+            <div class="scroll-arrow"></div>
         </div>
+    </section>
 
-        <div class="price-card">
-            <div class="card-title">PLATINUM</div>
-            <ul class="specs-list">
-                <li><i class="fas fa-desktop"></i> 360Hz Asus Monitör</li>
-                <li><i class="fas fa-microchip"></i> RTX 4060 Ti / 7800X3D</li>
-                <li><i class="fas fa-headset"></i> Kablosuz ATK Set</li>
-            </ul>
-            <div class="price-tag">50<span class="currency">₺</span></div>
+    <!-- BAKIYE -->
+    <section class="topup-section" id="topup">
+        <div class="section-header reveal">
+            <div class="section-label">Bakiye Yükle</div>
+            <h2 class="section-title">Yükle & Kazan</h2>
+            <div class="section-line"></div>
         </div>
-
-        <div class="price-card diamond">
-            <div class="card-title"><i class="fas fa-gem"></i> DIAMOND</div>
-            <ul class="specs-list">
-                <li><i class="fas fa-desktop"></i> 540Hz Asus Monitör</li>
-                <li><i class="fas fa-microchip"></i> RTX 4060 Ti / 7800X3D</li>
-                <li><i class="fas fa-couch"></i> Özel Geniş Masa</li>
-            </ul>
-            <div class="price-tag">60<span class="currency">₺</span></div>
-        </div>
-    </div>
-
-    <div class="section-title">TURNUVA ARENASI</div>
-    <div class="tournament-grid">
-        <div class="tour-card" style="background-image: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.9) 100%), url('https://w0.peakpx.com/wallpaper/419/55/HD-wallpaper-valorant-game-poster.jpg');">
-            <span class="tour-status status-active">KAYITLAR AÇIK</span>
-            <div class="tour-info">
-                <h3>VALORANT HAFTALIK</h3>
-                <p>Ödül Havuzu: 5.000 TL + Bonus</p>
-                <button class="join-btn">Kayıt Ol</button>
+        <div class="topup-grid">
+            <div class="topup-card reveal">
+                <div class="topup-amount">100 <small>₺</small></div>
+                <div class="topup-bonus">+10 ₺ HEDİYE</div>
+            </div>
+            <div class="topup-card reveal">
+                <div class="topup-amount">200 <small>₺</small></div>
+                <div class="topup-bonus">+40 ₺ HEDİYE</div>
+            </div>
+            <div class="topup-card reveal">
+                <div class="topup-amount">500 <small>₺</small></div>
+                <div class="topup-bonus">+125 ₺ HEDİYE</div>
+            </div>
+            <div class="topup-card reveal">
+                <div class="topup-amount">750 <small>₺</small></div>
+                <div class="topup-bonus">+225 ₺ HEDİYE</div>
+            </div>
+            <div class="topup-card reveal">
+                <div class="topup-amount">1000 <small>₺</small></div>
+                <div class="topup-bonus">+300 ₺ HEDİYE</div>
             </div>
         </div>
-        <div class="tour-card" style="background-image: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.9) 100%), url('https://wallpapers.com/images/hd/cs-go-4k-gaming-wz55702657j4y6j8.jpg');">
-            <span class="tour-status status-soon">YAKINDA</span>
-            <div class="tour-info">
-                <h3>CS2 ERZURUM LİGİ</h3>
-                <p>Büyük Ödül ve Sponsorluk</p>
-                <button class="join-btn">Takip Et</button>
+    </section>
+
+    <!-- PC TIERS -->
+    <section class="tiers-section" id="tiers">
+        <div class="section-header reveal">
+            <div class="section-label">Sistem Seçenekleri</div>
+            <h2 class="section-title">Seviyeni Seç</h2>
+            <div class="section-line"></div>
+        </div>
+        <div class="tiers-grid">
+            <!-- SILVER -->
+            <div class="tier-card silver reveal">
+                <div class="tier-icon">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+                    </svg>
+                </div>
+                <div class="tier-name">Silver</div>
+                <ul class="tier-specs">
+                    <li>280Hz Asus Monitör</li>
+                    <li>Intel Core i5</li>
+                    <li>RTX 3060</li>
+                    <li>Gaming Set</li>
+                </ul>
+                <div class="tier-price">35<small>₺/saat</small></div>
+            </div>
+            <!-- GOLD -->
+            <div class="tier-card gold reveal">
+                <div class="tier-icon">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+                    </svg>
+                </div>
+                <div class="tier-name">Gold</div>
+                <ul class="tier-specs">
+                    <li>280Hz Asus Monitör</li>
+                    <li>Ryzen 7 7800X3D</li>
+                    <li>RTX 4060 Ti</li>
+                    <li>Özel Geniş Masa</li>
+                </ul>
+                <div class="tier-price">45<small>₺/saat</small></div>
+            </div>
+            <!-- PLATINUM -->
+            <div class="tier-card platinum reveal">
+                <div class="tier-icon">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+                    </svg>
+                </div>
+                <div class="tier-name">Platinum</div>
+                <ul class="tier-specs">
+                    <li>360Hz Asus Monitör</li>
+                    <li>Ryzen 7 7800X3D</li>
+                    <li>RTX 4060 Ti</li>
+                    <li>Kablosuz ATK Set</li>
+                </ul>
+                <div class="tier-price">50<small>₺/saat</small></div>
+            </div>
+            <!-- DIAMOND -->
+            <div class="tier-card diamond reveal">
+                <span class="tier-badge">VIP</span>
+                <div class="tier-icon">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
+                    </svg>
+                </div>
+                <div class="tier-name">Diamond</div>
+                <ul class="tier-specs">
+                    <li>540Hz Asus Monitör</li>
+                    <li>Ryzen 7 7800X3D</li>
+                    <li>RTX 4060 Ti</li>
+                    <li>VIP Oyuncu Odası</li>
+                </ul>
+                <div class="tier-price">60<small>₺/saat</small></div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <div id="rezervasyon" class="reservation-hero">
-        <div class="res-text">
-            <h2>BEKLEMEK YOK!</h2>
-            <p>Diamond VIP veya Gold masalar için yerini şimdiden ayırt, geldiğinde sistemin hazır olsun.</p>
+    <!-- 3D PRINT -->
+    <section class="print-section" id="print">
+        <div class="section-header reveal">
+            <div class="section-label">Ek Hizmet</div>
+            <h2 class="section-title">3D Baskı</h2>
+            <div class="section-line"></div>
         </div>
-        <a href="https://wa.me/905444507334?text=Merhaba,%20Yıldız%20E-Spor%20için%20rezervasyon%20yapmak%20istiyorum." target="_blank" class="whatsapp-btn">
-            <i class="fab fa-whatsapp"></i> WHATSAPP İLE REZERVE ET
-        </a>
-    </div>
+        <div class="print-banner reveal">
+            <div class="print-icon"></div>
+            <div class="print-info">
+                <h3>3D Baskı Hizmeti</h3>
+                <p>Projelerinizi hayata geçirin. <span class="print-brand">Bambu Lab</span> yazıcılarımızla yüksek kaliteli 3D baskı hizmeti sunuyoruz.</p>
+            </div>
+        </div>
+    </section>
 
-</div>
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-logo">YILDIZ E-SPOR</div>
+        <div class="footer-location">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                <circle cx="12" cy="10" r="3"/>
+            </svg>
+            Yakutiye, Erzurum
+        </div>
+        <div class="footer-copy">© 2026 Yıldız E-Spor — Tüm hakları saklıdır.</div>
+    </footer>
 
-<footer>
-    <p>Yakutiye, Erzurum | Yıldız E-Spor Merkezi</p>
-    <p><i class="fas fa-print"></i> 3D Baskı Hizmetimiz Vardır (Bambu Lab A1)</p>
-    <p style="margin-top: 10px; font-size: 0.8rem; opacity: 0.6;">© 2026 Tüm Hakları Saklıdır.</p>
-</footer>
+    <script>
+        // Particles
+        const particlesEl = document.getElementById('particles');
+        for (let i = 0; i < 40; i++) {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            p.style.left = Math.random() * 100 + '%';
+            p.style.animationDuration = (Math.random() * 8 + 6) + 's';
+            p.style.animationDelay = (Math.random() * 10) + 's';
+            p.style.width = p.style.height = (Math.random() * 3 + 1) + 'px';
+            if (Math.random() > .7) p.style.background = '#ff00e5';
+            particlesEl.appendChild(p);
+        }
 
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Hamburger menu
+        document.getElementById('hamburger').addEventListener('click', () => {
+            document.getElementById('navLinks').classList.toggle('active');
+        });
+
+        // Reveal on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, i) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => entry.target.classList.add('visible'), i * 100);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
 </body>
 </html>
