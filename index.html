@@ -4,1727 +4,632 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yıldız E-Spor | Elite Gaming Center</title>
+    <meta name="description" content="Erzurum'un en güçlü oyun arenası. Özel metro hat, gigabit fiber, 540Hz monitörler, RTX ekran kartları.">
+    <meta name="theme-color" content="#0a0a0f">
+    <meta property="og:title" content="Yıldız E-Spor | Elite Gaming Center">
+    <meta property="og:description" content="Erzurum'un en güçlü oyun arenası. Sıfır lag, sıfır ping.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://byyapk-png.github.io/yildizespor/">
+    <link rel="manifest" href="manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Exo+2:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
         :root {
-            --neon-cyan: #00f0ff;
-            --neon-magenta: #ff00e5;
-            --neon-yellow: #ffe600;
-            --neon-green: #39ff14;
-            --dark-bg: #0a0a0f;
-            --card-bg: #12121c;
-            --card-border: #1e1e2e;
-            --text-primary: #e8e8f0;
-            --text-muted: #7a7a9a;
-            --silver: #a8b5c8;
-            --gold: #ffd700;
-            --platinum: #b4c8e0;
-            --diamond: #b9f2ff;
+            --neon-cyan: #00f0ff; --neon-magenta: #ff00e5; --neon-yellow: #ffe600;
+            --neon-green: #39ff14; --dark-bg: #0a0a0f; --card-bg: #12121c;
+            --card-border: #1e1e2e; --text-primary: #e8e8f0; --text-muted: #7a7a9a;
+            --silver: #a8b5c8; --gold: #ffd700; --platinum: #b4c8e0; --diamond: #b9f2ff;
         }
-
+        [data-theme="light"] {
+            --dark-bg: #f0f2f5; --card-bg: #ffffff; --card-border: #dfe3e8;
+            --text-primary: #1a1a2e; --text-muted: #5a5a7a;
+        }
         html { scroll-behavior: smooth; }
-
-        body {
-            font-family: 'Rajdhani', sans-serif;
-            background: var(--dark-bg);
-            color: var(--text-primary);
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background:
-                linear-gradient(rgba(0,240,255,.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0,240,255,.03) 1px, transparent 1px);
-            background-size: 60px 60px;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: var(--dark-bg); }
-        ::-webkit-scrollbar-thumb { background: var(--neon-cyan); border-radius: 3px; }
-
-        /* ===== NAVBAR ===== */
-        .navbar {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            z-index: 1000;
-            padding: 1rem 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: rgba(10,10,15,.85);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(0,240,255,.1);
-            transition: all .3s;
-        }
-
-        .navbar.scrolled { padding: .6rem 2rem; background: rgba(10,10,15,.95); }
-
-        .nav-left {
-            display: flex;
-            align-items: center;
-            gap: 1.2rem;
-        }
-
-        .nav-logo {
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 800;
-            font-size: 1.4rem;
-            color: var(--neon-cyan);
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            text-shadow: 0 0 20px rgba(0,240,255,.5);
-        }
-
-        .nav-logo span { color: var(--neon-magenta); }
-
-        .nav-ig {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 32px; height: 32px;
-            border-radius: 8px;
-            background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-            color: #fff;
-            text-decoration: none;
-            transition: all .3s;
-        }
-
-        .nav-ig:hover { transform: scale(1.15); box-shadow: 0 0 15px rgba(225,48,108,.5); }
-        .nav-ig svg { width: 18px; height: 18px; }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-family: 'Exo 2', sans-serif;
-            font-weight: 500;
-            font-size: .95rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            transition: all .3s;
-            position: relative;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px; left: 0;
-            width: 0; height: 2px;
-            background: var(--neon-cyan);
-            transition: width .3s;
-            box-shadow: 0 0 8px var(--neon-cyan);
-        }
-
-        .nav-links a:hover { color: var(--neon-cyan); }
-        .nav-links a:hover::after { width: 100%; }
-
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .nav-fiber {
-            background: rgba(57,255,20,.15);
-            border: 1px solid var(--neon-green);
-            color: var(--neon-green);
-            padding: .35rem .9rem;
-            border-radius: 4px;
-            font-family: 'Orbitron', sans-serif;
-            font-size: .55rem;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            animation: fiberPulse 2s ease-in-out infinite;
-            text-align: center;
-            line-height: 1.4;
-        }
-
-        @keyframes fiberPulse {
-            0%, 100% { box-shadow: 0 0 5px rgba(57,255,20,.3); }
-            50% { box-shadow: 0 0 20px rgba(57,255,20,.6); }
-        }
-
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            background: none;
-            border: none;
-            padding: 5px;
-        }
-
-        .hamburger span {
-            width: 28px; height: 2px;
-            background: var(--neon-cyan);
-            transition: all .3s;
-        }
-
-        /* ===== HERO ===== */
-        .hero {
-            position: relative;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 2rem;
-            overflow: visible;
-        }
-
-        .hero-bg {
-            position: absolute;
-            inset: 0;
-            background:
-                radial-gradient(ellipse at 20% 50%, rgba(0,240,255,.08) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 50%, rgba(255,0,229,.08) 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 100%, rgba(57,255,20,.05) 0%, transparent 40%);
-            z-index: 0;
-        }
-
-        .hero-particles { position: absolute; inset: 0; z-index: 0; }
-
-        .particle {
-            position: absolute;
-            width: 2px; height: 2px;
-            background: var(--neon-cyan);
-            border-radius: 50%;
-            animation: float linear infinite;
-            opacity: 0;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(100vh) scale(0); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateY(-10vh) scale(1); opacity: 0; }
-        }
-
-        .hero-content { position: relative; z-index: 1; max-width: 1000px; overflow: visible; }
-
-        .hero-badge {
-            display: inline-block;
-            font-family: 'Orbitron', sans-serif;
-            font-size: .7rem;
-            font-weight: 700;
-            letter-spacing: 4px;
-            color: var(--neon-cyan);
-            border: 1px solid rgba(0,240,255,.3);
-            padding: .5rem 1.5rem;
-            margin-bottom: 2rem;
-            text-transform: uppercase;
-            animation: badgeGlow 3s ease-in-out infinite;
-        }
-
-        @keyframes badgeGlow {
-            0%, 100% { box-shadow: 0 0 10px rgba(0,240,255,.1), inset 0 0 10px rgba(0,240,255,.05); }
-            50% { box-shadow: 0 0 30px rgba(0,240,255,.2), inset 0 0 20px rgba(0,240,255,.1); }
-        }
-
-        .hero-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: clamp(2.5rem, 7vw, 6rem);
-            font-weight: 900;
-            line-height: 1;
-            margin-bottom: .6rem;
-            text-transform: uppercase;
-            color: #fff;
-            animation: titleReveal 1.5s ease-out;
-        }
-
-        .hero-title-main {
-            display: block;
-            font-size: clamp(1.8rem, 6.5vw, 6rem);
-            background: linear-gradient(135deg, #fff 0%, var(--neon-cyan) 40%, var(--neon-magenta) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            filter: drop-shadow(0 0 30px rgba(0,240,255,.3));
-            letter-spacing: 4px;
-            line-height: 1.1;
-            margin-bottom: .3rem;
-            white-space: nowrap;
-        }
-
-        .hero-title-glow {
-            position: relative;
-        }
-
-        .hero-title-glow::after {
-            content: 'YILDIZ E-SPOR';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            font-size: inherit;
-            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-magenta));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            filter: blur(30px);
-            opacity: .5;
-            z-index: -1;
-        }
-
-        @keyframes titleReveal {
-            from { opacity: 0; transform: translateY(40px); filter: blur(10px); }
-            to { opacity: 1; transform: translateY(0); filter: blur(0); }
-        }
-
-        .hero-subtitle {
-            font-family: 'Orbitron', sans-serif;
-            font-size: clamp(.7rem, 1.8vw, 1rem);
-            font-weight: 600;
-            color: var(--text-muted);
-            letter-spacing: 8px;
-            text-transform: uppercase;
-            margin-bottom: 2.5rem;
-            animation: fadeUp 1.5s ease-out .3s both;
-        }
-
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .hero-features {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-            animation: fadeUp 1.5s ease-out .5s both;
-        }
-
-        .hero-feat {
-            display: flex;
-            align-items: center;
-            gap: .5rem;
-            font-family: 'Exo 2', sans-serif;
-            font-size: .85rem;
-            color: var(--text-muted);
-            padding: .4rem 1rem;
-            border: 1px solid rgba(255,255,255,.06);
-            background: rgba(255,255,255,.02);
-            border-radius: 4px;
-        }
-
-        .hero-feat svg { width: 16px; height: 16px; flex-shrink: 0; }
-        .hero-feat .green { color: var(--neon-green); }
-        .hero-feat .cyan { color: var(--neon-cyan); }
-        .hero-feat .magenta { color: var(--neon-magenta); }
-
-        .hero-cta {
-            display: inline-flex;
-            align-items: center;
-            gap: .8rem;
-            font-family: 'Orbitron', sans-serif;
-            font-size: .85rem;
-            font-weight: 700;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--dark-bg);
-            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-magenta));
-            border: none;
-            padding: 1rem 2.5rem;
-            cursor: pointer;
-            text-decoration: none;
-            clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
-            transition: all .3s;
-            animation: fadeUp 1.5s ease-out .8s both;
-        }
-
-        .hero-cta:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 40px rgba(0,240,255,.4);
-        }
-
-        .scroll-indicator {
-            position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: .5rem;
-            animation: bounce 2s infinite;
-        }
-
-        .scroll-indicator span {
-            font-family: 'Exo 2', sans-serif;
-            font-size: .7rem;
-            letter-spacing: 3px;
-            color: var(--text-muted);
-            text-transform: uppercase;
-        }
-
-        .scroll-arrow {
-            width: 20px; height: 20px;
-            border-right: 2px solid var(--neon-cyan);
-            border-bottom: 2px solid var(--neon-cyan);
-            transform: rotate(45deg);
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
-            40% { transform: translateX(-50%) translateY(-10px); }
-            60% { transform: translateX(-50%) translateY(-5px); }
-        }
-
-        /* ===== SECTIONS ===== */
-        section { position: relative; z-index: 1; padding: 6rem 2rem; }
-
-        .section-header { text-align: center; margin-bottom: 4rem; }
-
-        .section-label {
-            font-family: 'Orbitron', sans-serif;
-            font-size: .7rem;
-            font-weight: 700;
-            letter-spacing: 4px;
-            color: var(--neon-cyan);
-            text-transform: uppercase;
-            margin-bottom: .5rem;
-        }
-
-        .section-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: clamp(1.8rem, 4vw, 2.8rem);
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .section-line {
-            width: 60px; height: 3px;
-            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta));
-            margin: 1rem auto 0;
-        }
-
-        /* ===== BAKIYE ===== */
-        .topup-section { background: linear-gradient(180deg, transparent, rgba(0,240,255,.02), transparent); }
-
-        .topup-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 1.2rem;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .topup-card {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            padding: 2rem 1.2rem;
-            text-align: center;
-            transition: all .4s cubic-bezier(.25,.8,.25,1);
-            clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
-            cursor: pointer;
-        }
-
-        .topup-card:hover {
-            border-color: var(--neon-cyan);
-            transform: translateY(-6px);
-            box-shadow: 0 10px 40px rgba(0,240,255,.15);
-        }
-
-        .topup-amount {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2rem;
-            font-weight: 800;
-            color: #fff;
-            margin-bottom: .3rem;
-        }
-
-        .topup-amount small { font-size: .9rem; font-weight: 600; color: var(--text-muted); }
-
-        .topup-bonus {
-            font-family: 'Orbitron', sans-serif;
-            font-size: .85rem;
-            font-weight: 700;
-            color: var(--neon-green);
-            background: rgba(57,255,20,.1);
-            padding: .3rem .8rem;
-            display: inline-block;
-            margin-top: .5rem;
-        }
-
-        /* ===== PC TIERS ===== */
-        .tiers-section { background: linear-gradient(180deg, transparent, rgba(255,0,229,.02), transparent); }
-
-        .tiers-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 1.5rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .tier-card {
-            position: relative;
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            padding: 2.5rem 2rem;
-            transition: all .5s cubic-bezier(.25,.8,.25,1);
-            overflow: hidden;
-        }
-
-        .tier-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 3px;
-            transition: all .5s;
-        }
-
-        .tier-card.silver::before { background: linear-gradient(90deg, var(--silver), transparent); }
-        .tier-card.gold::before { background: linear-gradient(90deg, var(--gold), transparent); }
-        .tier-card.platinum::before { background: linear-gradient(90deg, var(--platinum), #8b9dc3); }
-        .tier-card.diamond::before { background: linear-gradient(90deg, var(--diamond), var(--neon-cyan)); }
-
-        .tier-card:hover { transform: translateY(-8px); border-color: rgba(255,255,255,.15); }
-        .tier-card.silver:hover { box-shadow: 0 15px 50px rgba(168,181,200,.15); }
-        .tier-card.gold:hover { box-shadow: 0 15px 50px rgba(255,215,0,.15); }
-        .tier-card.platinum:hover { box-shadow: 0 15px 50px rgba(180,200,224,.15); }
-        .tier-card.diamond:hover { box-shadow: 0 15px 50px rgba(185,242,255,.2); }
-
-        .tier-icon {
-            width: 50px; height: 50px;
-            margin-bottom: 1.2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .tier-card.silver .tier-icon svg { color: var(--silver); }
-        .tier-card.gold .tier-icon svg { color: var(--gold); }
-        .tier-card.platinum .tier-icon svg { color: var(--platinum); }
-        .tier-card.diamond .tier-icon svg { color: var(--diamond); }
-
-        .tier-name {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.4rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 1.5rem;
-        }
-
-        .tier-card.silver .tier-name { color: var(--silver); }
-        .tier-card.gold .tier-name { color: var(--gold); }
-        .tier-card.platinum .tier-name { color: var(--platinum); }
-        .tier-card.diamond .tier-name { color: var(--diamond); }
-
-        .tier-specs { list-style: none; margin-bottom: 2rem; }
-
-        .tier-specs li {
-            padding: .6rem 0;
-            border-bottom: 1px solid rgba(255,255,255,.04);
-            font-family: 'Exo 2', sans-serif;
-            font-size: .95rem;
-            color: var(--text-muted);
-            display: flex;
-            align-items: center;
-            gap: .6rem;
-        }
-
-        .tier-specs li::before { content: '▹'; color: var(--neon-cyan); font-size: .8rem; }
-
-        .tier-price {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 900;
-            color: #fff;
-        }
-
-        .tier-price small { font-size: .9rem; color: var(--text-muted); font-weight: 500; }
-
-        .tier-card.diamond {
-            border-color: rgba(185,242,255,.15);
-            background: linear-gradient(135deg, var(--card-bg), rgba(185,242,255,.03));
-        }
-
-        .tier-badge {
-            position: absolute;
-            top: 1.2rem; right: 1.2rem;
-            font-family: 'Orbitron', sans-serif;
-            font-size: .55rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            color: var(--dark-bg);
-            background: linear-gradient(135deg, var(--neon-cyan), var(--diamond));
-            padding: .3rem .8rem;
-            text-transform: uppercase;
-        }
-
-        /* ===== TOURNAMENT SECTION ===== */
-        .tournament-section {
-            background: linear-gradient(180deg, transparent, rgba(255,0,229,.02), transparent);
-        }
-
-        .tournament-container {
-            max-width: 900px;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        .tournament-tabs {
-            display: flex;
-            justify-content: center;
-            gap: .5rem;
-            margin-bottom: 2rem;
-        }
-
-        .tournament-tab {
-            font-family: 'Orbitron', sans-serif;
-            font-size: .75rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            padding: .7rem 1.8rem;
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            color: var(--text-muted);
-            cursor: pointer;
-            transition: all .3s;
-            clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
-        }
-
-        .tournament-tab:hover { border-color: rgba(255,255,255,.15); color: var(--text-primary); }
-
-        .tournament-tab.active {
-            border-color: var(--neon-cyan);
-            color: var(--neon-cyan);
-            background: rgba(0,240,255,.05);
-            box-shadow: 0 0 20px rgba(0,240,255,.1);
-        }
-
-        .tournament-tab.active.lol { border-color: #c89b3c; color: #c89b3c; background: rgba(200,155,60,.05); box-shadow: 0 0 20px rgba(200,155,60,.1); }
-        .tournament-tab.active.cs { border-color: #f7a21b; color: #f7a21b; background: rgba(247,162,27,.05); box-shadow: 0 0 20px rgba(247,162,27,.1); }
-        .tournament-tab.active.val { border-color: #ff4655; color: #ff4655; background: rgba(255,70,85,.05); box-shadow: 0 0 20px rgba(255,70,85,.1); }
-
-        .tournament-panel {
-            display: none;
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            padding: 2.5rem;
-            position: relative;
-            overflow: hidden;
-            clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
-        }
-
-        .tournament-panel.active { display: block; }
-
-        .tournament-panel::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 3px;
-        }
-
-        .tournament-panel.lol::before { background: linear-gradient(90deg, #c89b3c, transparent); }
-        .tournament-panel.cs::before { background: linear-gradient(90deg, #f7a21b, transparent); }
-        .tournament-panel.val::before { background: linear-gradient(90deg, #ff4655, transparent); }
-
-        .tournament-game-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .tournament-game-icon {
-            width: 50px; height: 50px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 900;
-            font-size: .7rem;
-            color: #fff;
-            letter-spacing: 1px;
-        }
-
-        .tournament-game-icon.lol { background: linear-gradient(135deg, #0a1428, #c89b3c); }
-        .tournament-game-icon.cs { background: linear-gradient(135deg, #1a1a2e, #f7a21b); }
-        .tournament-game-icon.val { background: linear-gradient(135deg, #111, #ff4655); }
-
-        .tournament-game-info h3 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .tournament-game-info p {
-            font-family: 'Exo 2', sans-serif;
-            font-size: .85rem;
-            color: var(--text-muted);
-        }
-
-        .tournament-details {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .tournament-detail-item {
-            padding: 1rem;
-            background: rgba(255,255,255,.02);
-            border: 1px solid rgba(255,255,255,.04);
-            border-radius: 4px;
-        }
-
-        .tournament-detail-item label {
-            font-family: 'Exo 2', sans-serif;
-            font-size: .7rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--text-muted);
-            display: block;
-            margin-bottom: .3rem;
-        }
-
-        .tournament-detail-item span {
-            font-family: 'Orbitron', sans-serif;
-            font-size: .85rem;
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-
-        .tournament-apply-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: .6rem;
-            font-family: 'Orbitron', sans-serif;
-            font-size: .75rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            padding: .9rem 2rem;
-            border: none;
-            cursor: not-allowed;
-            opacity: .5;
-            clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
-        }
-
-        .tournament-apply-btn.lol { background: linear-gradient(135deg, #c89b3c, #785a28); color: #0a1428; }
-        .tournament-apply-btn.cs { background: linear-gradient(135deg, #f7a21b, #b87a10); color: #1a1a2e; }
-        .tournament-apply-btn.val { background: linear-gradient(135deg, #ff4655, #b8303b); color: #fff; }
-
-        /* YAKINDA Overlay */
-        .yakinda-overlay {
-            position: absolute;
-            inset: 0;
-            background: rgba(10,10,15,.75);
-            backdrop-filter: blur(6px);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 5;
-        }
-
-        .yakinda-badge {
-            font-family: 'Orbitron', sans-serif;
-            font-size: clamp(1.5rem, 4vw, 2.5rem);
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 8px;
-            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-magenta));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: yakindaPulse 2s ease-in-out infinite;
-            margin-bottom: .5rem;
-        }
-
-        .yakinda-sub {
-            font-family: 'Exo 2', sans-serif;
-            font-size: .9rem;
-            color: var(--text-muted);
-            letter-spacing: 2px;
-        }
-
-        @keyframes yakindaPulse {
-            0%, 100% { filter: drop-shadow(0 0 10px rgba(0,240,255,.3)); }
-            50% { filter: drop-shadow(0 0 25px rgba(0,240,255,.6)); }
-        }
-
-        /* ===== LOCATION SECTION ===== */
-        .location-section {
-            background: linear-gradient(180deg, transparent, rgba(0,240,255,.02), transparent);
-        }
-
-        .location-wrapper {
-            max-width: 1000px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            align-items: stretch;
-        }
-
-        .location-map {
-            border: 1px solid var(--card-border);
-            overflow: hidden;
-            clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
-            min-height: 320px;
-            transition: all .4s;
-        }
-
-        .location-map:hover {
-            border-color: var(--neon-cyan);
-            box-shadow: 0 10px 40px rgba(0,240,255,.1);
-        }
-
-        .location-map iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            filter: grayscale(.6) contrast(1.1) brightness(.8);
-            transition: filter .4s;
-        }
-
-        .location-map:hover iframe { filter: grayscale(.2) contrast(1) brightness(.9); }
-
-        .location-info {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            padding: 2.5rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
-        }
-
-        .location-info h3 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.2rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 1.2rem;
-            color: var(--neon-cyan);
-        }
-
-        .location-detail {
-            display: flex;
-            align-items: flex-start;
-            gap: .8rem;
-            margin-bottom: 1rem;
-            font-family: 'Exo 2', sans-serif;
-            color: var(--text-muted);
-            font-size: .95rem;
-            line-height: 1.5;
-        }
-
-        .location-detail svg {
-            width: 20px; height: 20px;
-            flex-shrink: 0;
-            color: var(--neon-cyan);
-            margin-top: 2px;
-        }
-
-        .location-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: .6rem;
-            margin-top: 1.5rem;
-            font-family: 'Orbitron', sans-serif;
-            font-size: .7rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--dark-bg);
-            background: var(--neon-cyan);
-            border: none;
-            padding: .8rem 1.5rem;
-            text-decoration: none;
-            clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
-            transition: all .3s;
-            cursor: pointer;
-        }
-
-        .location-btn:hover {
-            background: #fff;
-            box-shadow: 0 0 30px rgba(0,240,255,.4);
-        }
-
-        .location-btn svg { width: 14px; height: 14px; }
-
-        /* ===== WHATSAPP WIDGET (RIGHT SIDE) ===== */
-        .wa-widget {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            z-index: 9999;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            gap: .8rem;
-        }
-
-        .wa-chat-box {
-            background: #1a1a2e;
-            border: 1px solid #25d366;
-            border-radius: 16px 16px 4px 16px;
-            padding: 0;
-            width: 320px;
-            overflow: hidden;
-            box-shadow: 0 10px 40px rgba(37,211,102,.2);
-            transform: scale(0) translateY(20px);
-            transform-origin: bottom right;
-            opacity: 0;
-            transition: all .4s cubic-bezier(.34,1.56,.64,1);
-            pointer-events: none;
-        }
-
-        .wa-chat-box.open {
-            transform: scale(1) translateY(0);
-            opacity: 1;
-            pointer-events: all;
-        }
-
-        .wa-chat-header {
-            background: #25d366;
-            padding: 1rem 1.2rem;
-            display: flex;
-            align-items: center;
-            gap: .8rem;
-        }
-
-        .wa-chat-header-avatar {
-            width: 40px; height: 40px;
-            background: rgba(255,255,255,.2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .wa-chat-header-avatar svg { width: 22px; height: 22px; fill: #fff; }
-
-        .wa-chat-header-info h4 {
-            font-family: 'Exo 2', sans-serif;
-            font-size: .95rem;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: .1rem;
-        }
-
-        .wa-chat-header-info span {
-            font-family: 'Exo 2', sans-serif;
-            font-size: .7rem;
-            color: rgba(255,255,255,.8);
-        }
-
-        .wa-chat-close {
-            margin-left: auto;
-            background: none;
-            border: none;
-            color: #fff;
-            font-size: 1.3rem;
-            cursor: pointer;
-            padding: .2rem;
-            line-height: 1;
-            opacity: .8;
-            transition: opacity .2s;
-        }
-
-        .wa-chat-close:hover { opacity: 1; }
-
-        .wa-chat-body {
-            padding: 1.2rem;
-            background: #111120;
-            min-height: 80px;
-        }
-
-        .wa-message-bubble {
-            background: #1e1e35;
-            border: 1px solid rgba(37,211,102,.15);
-            border-radius: 4px 12px 12px 12px;
-            padding: .8rem 1rem;
-            font-family: 'Exo 2', sans-serif;
-            font-size: .9rem;
-            color: var(--text-primary);
-            line-height: 1.5;
-        }
-
-        .wa-message-time {
-            font-size: .65rem;
-            color: var(--text-muted);
-            text-align: right;
-            margin-top: .4rem;
-        }
-
-        .wa-chat-input {
-            display: flex;
-            gap: .5rem;
-            padding: .8rem 1rem;
-            border-top: 1px solid rgba(255,255,255,.05);
-            background: #0e0e1a;
-        }
-
-        .wa-chat-input input {
-            flex: 1;
-            background: #1a1a2e;
-            border: 1px solid rgba(255,255,255,.08);
-            border-radius: 20px;
-            padding: .6rem 1rem;
-            font-family: 'Exo 2', sans-serif;
-            font-size: .85rem;
-            color: #fff;
-            outline: none;
-            transition: border-color .3s;
-        }
-
-        .wa-chat-input input::placeholder { color: var(--text-muted); }
-        .wa-chat-input input:focus { border-color: #25d366; }
-
-        .wa-chat-input button {
-            width: 38px; height: 38px;
-            background: #25d366;
-            border: none;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all .3s;
-            flex-shrink: 0;
-        }
-
-        .wa-chat-input button:hover { background: #20bd5a; transform: scale(1.08); }
-        .wa-chat-input button svg { width: 18px; height: 18px; fill: #fff; }
-
-        .wa-fab {
-            width: 60px; height: 60px;
-            background: #25d366;
-            border: none;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 4px 20px rgba(37,211,102,.4);
-            transition: all .3s;
-            animation: waFabPulse 2.5s ease-in-out infinite;
-        }
-
-        .wa-fab:hover { transform: scale(1.1); box-shadow: 0 6px 30px rgba(37,211,102,.6); }
-        .wa-fab svg { width: 32px; height: 32px; fill: #fff; }
-
-        @keyframes waFabPulse {
-            0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,.4); }
-            50% { box-shadow: 0 4px 30px rgba(37,211,102,.7), 0 0 0 10px rgba(37,211,102,.1); }
-        }
-
-        .wa-fab-label {
-            position: absolute;
-            right: 75px;
-            bottom: 15px;
-            background: #1a1a2e;
-            border: 1px solid rgba(37,211,102,.3);
-            color: var(--text-primary);
-            padding: .4rem .8rem;
-            border-radius: 8px;
-            font-family: 'Exo 2', sans-serif;
-            font-size: .75rem;
-            white-space: nowrap;
-            opacity: 0;
-            transform: translateX(10px);
-            transition: all .3s;
-            pointer-events: none;
-        }
-
-        .wa-fab:hover + .wa-fab-label,
-        .wa-fab-label.show { opacity: 1; transform: translateX(0); }
-
-        /* ===== FOOTER ===== */
-        .footer {
-            position: relative;
-            z-index: 1;
-            text-align: center;
-            padding: 3rem 2rem;
-            border-top: 1px solid var(--card-border);
-            background: rgba(10,10,15,.8);
-        }
-
-        .footer-logo {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.2rem;
-            font-weight: 800;
-            color: var(--neon-cyan);
-            letter-spacing: 3px;
-            margin-bottom: .8rem;
-        }
-
-        .footer-socials {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .footer-social-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 38px; height: 38px;
-            border-radius: 8px;
-            border: 1px solid var(--card-border);
-            color: var(--text-muted);
-            text-decoration: none;
-            transition: all .3s;
-        }
-
-        .footer-social-link:hover {
-            border-color: var(--neon-cyan);
-            color: var(--neon-cyan);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 20px rgba(0,240,255,.15);
-        }
-
-        .footer-social-link.ig:hover {
-            border-color: #e1306c;
-            color: #e1306c;
-            box-shadow: 0 5px 20px rgba(225,48,108,.2);
-        }
-
-        .footer-social-link svg { width: 18px; height: 18px; }
-
-        .footer-location {
-            font-family: 'Exo 2', sans-serif;
-            color: var(--text-muted);
-            font-size: .9rem;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: .4rem;
-        }
-
-        .footer-location svg { width: 14px; height: 14px; }
-
-        .footer-copy {
-            font-family: 'Exo 2', sans-serif;
-            font-size: .75rem;
-            color: rgba(255,255,255,.2);
-            letter-spacing: 1px;
-        }
-
-        /* ===== TOUCH HELPERS ===== */
+        body { font-family: 'Rajdhani', sans-serif; background: var(--dark-bg); color: var(--text-primary); overflow-x: hidden; line-height: 1.6; transition: background .4s, color .4s; }
+        body::before { content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(rgba(0,240,255,.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,240,255,.03) 1px, transparent 1px); background-size: 60px 60px; pointer-events: none; z-index: 0; }
+        [data-theme="light"] body::before { background: linear-gradient(rgba(0,0,0,.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,.03) 1px, transparent 1px); background-size: 60px 60px; }
+        ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: var(--dark-bg); } ::-webkit-scrollbar-thumb { background: var(--neon-cyan); border-radius: 3px; }
         a, button { -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
 
-        /* ===== REVEAL ===== */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all .8s cubic-bezier(.25,.8,.25,1);
-        }
+        /* NAVBAR */
+        .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; background: rgba(10,10,15,.85); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(0,240,255,.1); transition: all .3s; }
+        [data-theme="light"] .navbar { background: rgba(240,242,245,.9); border-bottom-color: rgba(0,0,0,.08); }
+        .navbar.scrolled { padding: .6rem 2rem; }
+        .nav-left { display: flex; align-items: center; gap: 1.2rem; }
+        .nav-logo { font-family: 'Orbitron', sans-serif; font-weight: 800; font-size: 1.4rem; color: var(--neon-cyan); text-decoration: none; text-transform: uppercase; letter-spacing: 2px; text-shadow: 0 0 20px rgba(0,240,255,.5); }
+        .nav-logo span { color: var(--neon-magenta); }
+        [data-theme="light"] .nav-logo { text-shadow: none; }
+        .nav-ig { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 8px; background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: #fff; text-decoration: none; transition: all .3s; }
+        .nav-ig:hover { transform: scale(1.15); }
+        .nav-ig svg { width: 18px; height: 18px; }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; font-family: 'Exo 2', sans-serif; font-weight: 500; font-size: .95rem; letter-spacing: 1px; text-transform: uppercase; transition: all .3s; position: relative; }
+        .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--neon-cyan); transition: width .3s; }
+        .nav-links a:hover { color: var(--neon-cyan); }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-right { display: flex; align-items: center; gap: 1rem; }
+        .nav-fiber { background: rgba(57,255,20,.15); border: 1px solid var(--neon-green); color: var(--neon-green); padding: .35rem .9rem; border-radius: 4px; font-family: 'Orbitron', sans-serif; font-size: .55rem; font-weight: 700; letter-spacing: 1.5px; animation: fiberPulse 2s ease-in-out infinite; text-align: center; line-height: 1.4; }
+        @keyframes fiberPulse { 0%,100%{box-shadow:0 0 5px rgba(57,255,20,.3)} 50%{box-shadow:0 0 20px rgba(57,255,20,.6)} }
+        .theme-toggle { background: none; border: 1px solid var(--card-border); color: var(--text-muted); width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all .3s; }
+        .theme-toggle:hover { border-color: var(--neon-cyan); color: var(--neon-cyan); }
+        .theme-toggle svg { width: 18px; height: 18px; }
+        .theme-toggle .sun { display: none; }
+        [data-theme="light"] .theme-toggle .moon { display: none; }
+        [data-theme="light"] .theme-toggle .sun { display: block; }
+        .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 5px; }
+        .hamburger span { width: 28px; height: 2px; background: var(--neon-cyan); transition: all .3s; }
 
+        /* HERO */
+        .hero { position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 2rem; overflow: visible; }
+        .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse at 20% 50%,rgba(0,240,255,.08) 0%,transparent 50%), radial-gradient(ellipse at 80% 50%,rgba(255,0,229,.08) 0%,transparent 50%), radial-gradient(ellipse at 50% 100%,rgba(57,255,20,.05) 0%,transparent 40%); z-index: 0; }
+        .hero-particles { position: absolute; inset: 0; z-index: 0; }
+        .particle { position: absolute; width: 2px; height: 2px; background: var(--neon-cyan); border-radius: 50%; animation: float linear infinite; opacity: 0; }
+        @keyframes float { 0%{transform:translateY(100vh) scale(0);opacity:0} 10%{opacity:1} 90%{opacity:1} 100%{transform:translateY(-10vh) scale(1);opacity:0} }
+        .hero-content { position: relative; z-index: 1; max-width: 1000px; overflow: visible; }
+        .hero-badge { display: inline-block; font-family: 'Orbitron', sans-serif; font-size: .7rem; font-weight: 700; letter-spacing: 4px; color: var(--neon-cyan); border: 1px solid rgba(0,240,255,.3); padding: .5rem 1.5rem; margin-bottom: 2rem; text-transform: uppercase; animation: badgeGlow 3s ease-in-out infinite; }
+        @keyframes badgeGlow { 0%,100%{box-shadow:0 0 10px rgba(0,240,255,.1),inset 0 0 10px rgba(0,240,255,.05)} 50%{box-shadow:0 0 30px rgba(0,240,255,.2),inset 0 0 20px rgba(0,240,255,.1)} }
+        .hero-title { font-family: 'Orbitron', sans-serif; font-size: clamp(2.5rem,7vw,6rem); font-weight: 900; line-height: 1; margin-bottom: .6rem; text-transform: uppercase; color: #fff; animation: titleReveal 1.5s ease-out; }
+        [data-theme="light"] .hero-title { color: #1a1a2e; }
+        .hero-title-main { display: block; font-size: clamp(1.8rem,6.5vw,6rem); background: linear-gradient(135deg,#fff 0%,var(--neon-cyan) 40%,var(--neon-magenta) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; filter: drop-shadow(0 0 30px rgba(0,240,255,.3)); letter-spacing: 4px; line-height: 1.1; margin-bottom: .3rem; white-space: nowrap; }
+        .hero-title-glow { position: relative; }
+        .hero-title-glow::after { content: 'YILDIZ E-SPOR'; position: absolute; top: 0; left: 0; right: 0; font-size: inherit; background: linear-gradient(135deg,var(--neon-cyan),var(--neon-magenta)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; filter: blur(30px); opacity: .5; z-index: -1; }
+        @keyframes titleReveal { from{opacity:0;transform:translateY(40px);filter:blur(10px)} to{opacity:1;transform:translateY(0);filter:blur(0)} }
+        .hero-subtitle { font-family: 'Orbitron', sans-serif; font-size: clamp(.7rem,1.8vw,1rem); font-weight: 600; color: var(--text-muted); letter-spacing: 8px; text-transform: uppercase; margin-bottom: 2.5rem; animation: fadeUp 1.5s ease-out .3s both; }
+        @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+        .hero-features { display: flex; justify-content: center; flex-wrap: wrap; gap: 1.5rem; margin-bottom: 3rem; animation: fadeUp 1.5s ease-out .5s both; }
+        .hero-feat { display: flex; align-items: center; gap: .5rem; font-family: 'Exo 2', sans-serif; font-size: .85rem; color: var(--text-muted); padding: .4rem 1rem; border: 1px solid rgba(255,255,255,.06); background: rgba(255,255,255,.02); border-radius: 4px; }
+        .hero-feat svg { width: 16px; height: 16px; flex-shrink: 0; }
+        .hero-feat .green { color: var(--neon-green); } .hero-feat .cyan { color: var(--neon-cyan); } .hero-feat .magenta { color: var(--neon-magenta); }
+        .hero-cta { display: inline-flex; align-items: center; gap: .8rem; font-family: 'Orbitron', sans-serif; font-size: .85rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--dark-bg); background: linear-gradient(135deg,var(--neon-cyan),var(--neon-magenta)); border: none; padding: 1rem 2.5rem; cursor: pointer; text-decoration: none; clip-path: polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,16px 100%,0 calc(100% - 16px)); transition: all .3s; animation: fadeUp 1.5s ease-out .8s both; }
+        .hero-cta:hover { transform: scale(1.05); box-shadow: 0 0 40px rgba(0,240,255,.4); }
+        .scroll-indicator { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: .5rem; animation: bounce 2s infinite; }
+        .scroll-indicator span { font-family: 'Exo 2', sans-serif; font-size: .7rem; letter-spacing: 3px; color: var(--text-muted); text-transform: uppercase; }
+        .scroll-arrow { width: 20px; height: 20px; border-right: 2px solid var(--neon-cyan); border-bottom: 2px solid var(--neon-cyan); transform: rotate(45deg); }
+        @keyframes bounce { 0%,20%,50%,80%,100%{transform:translateX(-50%) translateY(0)} 40%{transform:translateX(-50%) translateY(-10px)} 60%{transform:translateX(-50%) translateY(-5px)} }
+
+        /* SECTIONS */
+        section { position: relative; z-index: 1; padding: 6rem 2rem; }
+        .section-header { text-align: center; margin-bottom: 4rem; }
+        .section-label { font-family: 'Orbitron', sans-serif; font-size: .7rem; font-weight: 700; letter-spacing: 4px; color: var(--neon-cyan); text-transform: uppercase; margin-bottom: .5rem; }
+        .section-title { font-family: 'Orbitron', sans-serif; font-size: clamp(1.8rem,4vw,2.8rem); font-weight: 800; text-transform: uppercase; letter-spacing: 2px; }
+        .section-line { width: 60px; height: 3px; background: linear-gradient(90deg,var(--neon-cyan),var(--neon-magenta)); margin: 1rem auto 0; }
+
+        /* TOPUP */
+        .topup-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(180px,1fr)); gap: 1.2rem; max-width: 1000px; margin: 0 auto; }
+        .topup-card { background: var(--card-bg); border: 1px solid var(--card-border); padding: 2rem 1.2rem; text-align: center; transition: all .4s cubic-bezier(.25,.8,.25,1); clip-path: polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px)); cursor: pointer; }
+        .topup-card:hover { border-color: var(--neon-cyan); transform: translateY(-6px); box-shadow: 0 10px 40px rgba(0,240,255,.15); }
+        .topup-amount { font-family: 'Orbitron', sans-serif; font-size: 2rem; font-weight: 800; color: var(--text-primary); }
+        .topup-amount small { font-size: .9rem; font-weight: 600; color: var(--text-muted); }
+        .topup-bonus { font-family: 'Orbitron', sans-serif; font-size: .85rem; font-weight: 700; color: var(--neon-green); background: rgba(57,255,20,.1); padding: .3rem .8rem; display: inline-block; margin-top: .5rem; }
+
+        /* TIERS */
+        .tiers-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); gap: 1.5rem; max-width: 1200px; margin: 0 auto; }
+        .tier-card { position: relative; background: var(--card-bg); border: 1px solid var(--card-border); padding: 2.5rem 2rem; transition: all .5s cubic-bezier(.25,.8,.25,1); overflow: hidden; }
+        .tier-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+        .tier-card.silver::before { background: linear-gradient(90deg,var(--silver),transparent); }
+        .tier-card.gold::before { background: linear-gradient(90deg,var(--gold),transparent); }
+        .tier-card.platinum::before { background: linear-gradient(90deg,var(--platinum),#8b9dc3); }
+        .tier-card.diamond::before { background: linear-gradient(90deg,var(--diamond),var(--neon-cyan)); }
+        .tier-card:hover { transform: translateY(-8px); border-color: rgba(255,255,255,.15); }
+        .tier-icon { width: 50px; height: 50px; margin-bottom: 1.2rem; display: flex; align-items: center; justify-content: center; }
+        .tier-card.silver .tier-icon svg { color: var(--silver); } .tier-card.gold .tier-icon svg { color: var(--gold); }
+        .tier-card.platinum .tier-icon svg { color: var(--platinum); } .tier-card.diamond .tier-icon svg { color: var(--diamond); }
+        .tier-name { font-family: 'Orbitron', sans-serif; font-size: 1.4rem; font-weight: 800; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 1.5rem; }
+        .tier-card.silver .tier-name { color: var(--silver); } .tier-card.gold .tier-name { color: var(--gold); }
+        .tier-card.platinum .tier-name { color: var(--platinum); } .tier-card.diamond .tier-name { color: var(--diamond); }
+        .tier-specs { list-style: none; margin-bottom: 2rem; }
+        .tier-specs li { padding: .6rem 0; border-bottom: 1px solid rgba(255,255,255,.04); font-family: 'Exo 2', sans-serif; font-size: .95rem; color: var(--text-muted); display: flex; align-items: center; gap: .6rem; }
+        .tier-specs li::before { content: '▹'; color: var(--neon-cyan); }
+        .tier-price { font-family: 'Orbitron', sans-serif; font-size: 2.5rem; font-weight: 900; }
+        .tier-price small { font-size: .9rem; color: var(--text-muted); font-weight: 500; }
+        .tier-card.diamond { border-color: rgba(185,242,255,.15); background: linear-gradient(135deg,var(--card-bg),rgba(185,242,255,.03)); }
+        .tier-badge { position: absolute; top: 1.2rem; right: 1.2rem; font-family: 'Orbitron', sans-serif; font-size: .55rem; font-weight: 700; letter-spacing: 2px; color: var(--dark-bg); background: linear-gradient(135deg,var(--neon-cyan),var(--diamond)); padding: .3rem .8rem; }
+
+        /* PRICE CALCULATOR */
+        .calc-container { max-width: 600px; margin: 0 auto; background: var(--card-bg); border: 1px solid var(--card-border); padding: 2.5rem; clip-path: polygon(0 0,calc(100% - 20px) 0,100% 20px,100% 100%,20px 100%,0 calc(100% - 20px)); }
+        .calc-row { margin-bottom: 1.5rem; }
+        .calc-label { font-family: 'Orbitron', sans-serif; font-size: .7rem; font-weight: 700; letter-spacing: 2px; color: var(--text-muted); text-transform: uppercase; margin-bottom: .5rem; display: block; }
+        .calc-select, .calc-range { width: 100%; padding: .8rem 1rem; background: rgba(255,255,255,.03); border: 1px solid var(--card-border); color: var(--text-primary); font-family: 'Exo 2', sans-serif; font-size: 1rem; border-radius: 4px; outline: none; transition: border-color .3s; }
+        .calc-select:focus, .calc-range:focus { border-color: var(--neon-cyan); }
+        .calc-select option { background: var(--card-bg); color: var(--text-primary); }
+        .calc-hours { display: flex; align-items: center; gap: 1rem; }
+        .calc-hours input[type=range] { flex: 1; -webkit-appearance: none; height: 4px; background: var(--card-border); border-radius: 2px; outline: none; }
+        .calc-hours input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 20px; height: 20px; background: var(--neon-cyan); border-radius: 50%; cursor: pointer; }
+        .calc-hours-val { font-family: 'Orbitron', sans-serif; font-size: 1.2rem; font-weight: 700; color: var(--neon-cyan); min-width: 50px; text-align: center; }
+        .calc-result { text-align: center; padding: 1.5rem; background: rgba(0,240,255,.03); border: 1px solid rgba(0,240,255,.1); margin-top: 1rem; }
+        .calc-total { font-family: 'Orbitron', sans-serif; font-size: 2.5rem; font-weight: 900; color: var(--neon-cyan); }
+        .calc-total small { font-size: 1rem; color: var(--text-muted); }
+
+        /* GALLERY */
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 1rem; max-width: 1200px; margin: 0 auto; }
+        .gallery-item { position: relative; height: 220px; overflow: hidden; border: 1px solid var(--card-border); cursor: pointer; transition: all .4s; }
+        .gallery-item:hover { border-color: var(--neon-cyan); transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,240,255,.1); }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+        .gallery-item:hover img { transform: scale(1.05); }
+        .gallery-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-family: 'Orbitron', sans-serif; font-size: .8rem; font-weight: 700; color: rgba(255,255,255,.3); letter-spacing: 2px; text-transform: uppercase; }
+        .gp-1 { background: linear-gradient(135deg,#0a1428,#1a2a4a); } .gp-2 { background: linear-gradient(135deg,#1a0a28,#2a1a4a); }
+        .gp-3 { background: linear-gradient(135deg,#0a2818,#1a4a2a); } .gp-4 { background: linear-gradient(135deg,#281a0a,#4a2a1a); }
+        .gp-5 { background: linear-gradient(135deg,#0a1828,#1a3a4a); } .gp-6 { background: linear-gradient(135deg,#28080a,#4a1a1a); }
+
+        /* TOURNAMENT */
+        .tournament-container { max-width: 900px; margin: 0 auto; position: relative; }
+        .tournament-tabs { display: flex; justify-content: center; gap: .5rem; margin-bottom: 2rem; }
+        .tournament-tab { font-family: 'Orbitron', sans-serif; font-size: .75rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: .7rem 1.8rem; background: var(--card-bg); border: 1px solid var(--card-border); color: var(--text-muted); cursor: pointer; transition: all .3s; clip-path: polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px)); }
+        .tournament-tab.active { border-color: var(--neon-cyan); color: var(--neon-cyan); background: rgba(0,240,255,.05); }
+        .tournament-tab.active.lol { border-color: #c89b3c; color: #c89b3c; }
+        .tournament-tab.active.cs { border-color: #f7a21b; color: #f7a21b; }
+        .tournament-tab.active.val { border-color: #ff4655; color: #ff4655; }
+        .tournament-panel { display: none; background: var(--card-bg); border: 1px solid var(--card-border); padding: 2.5rem; position: relative; overflow: hidden; clip-path: polygon(0 0,calc(100% - 20px) 0,100% 20px,100% 100%,20px 100%,0 calc(100% - 20px)); }
+        .tournament-panel.active { display: block; }
+        .tournament-panel::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+        .tournament-panel.lol::before { background: linear-gradient(90deg,#c89b3c,transparent); }
+        .tournament-panel.cs::before { background: linear-gradient(90deg,#f7a21b,transparent); }
+        .tournament-panel.val::before { background: linear-gradient(90deg,#ff4655,transparent); }
+        .tournament-game-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
+        .tournament-game-icon { width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: .7rem; color: #fff; }
+        .tournament-game-icon.lol { background: linear-gradient(135deg,#0a1428,#c89b3c); }
+        .tournament-game-icon.cs { background: linear-gradient(135deg,#1a1a2e,#f7a21b); }
+        .tournament-game-icon.val { background: linear-gradient(135deg,#111,#ff4655); }
+        .tournament-game-info h3 { font-family: 'Orbitron', sans-serif; font-size: 1.1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
+        .tournament-game-info p { font-family: 'Exo 2', sans-serif; font-size: .85rem; color: var(--text-muted); }
+        .tournament-details { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem; }
+        .tournament-detail-item { padding: 1rem; background: rgba(255,255,255,.02); border: 1px solid rgba(255,255,255,.04); border-radius: 4px; }
+        .tournament-detail-item label { font-family: 'Exo 2', sans-serif; font-size: .7rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); display: block; margin-bottom: .3rem; }
+        .tournament-detail-item span { font-family: 'Orbitron', sans-serif; font-size: .85rem; font-weight: 600; }
+        .tournament-apply-btn { display: inline-flex; font-family: 'Orbitron', sans-serif; font-size: .75rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: .9rem 2rem; border: none; cursor: not-allowed; opacity: .5; clip-path: polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px)); color: #fff; background: linear-gradient(135deg,var(--neon-cyan),var(--neon-magenta)); }
+        .yakinda-overlay { position: absolute; inset: 0; background: rgba(10,10,15,.75); backdrop-filter: blur(6px); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 5; }
+        .yakinda-badge { font-family: 'Orbitron', sans-serif; font-size: clamp(1.5rem,4vw,2.5rem); font-weight: 900; text-transform: uppercase; letter-spacing: 8px; background: linear-gradient(135deg,var(--neon-cyan),var(--neon-magenta)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: yakindaPulse 2s ease-in-out infinite; }
+        .yakinda-sub { font-family: 'Exo 2', sans-serif; font-size: .9rem; color: var(--text-muted); letter-spacing: 2px; }
+        @keyframes yakindaPulse { 0%,100%{filter:drop-shadow(0 0 10px rgba(0,240,255,.3))} 50%{filter:drop-shadow(0 0 25px rgba(0,240,255,.6))} }
+
+        /* EVENT CALENDAR */
+        .events-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 1.2rem; max-width: 1000px; margin: 0 auto; }
+        .event-card { background: var(--card-bg); border: 1px solid var(--card-border); padding: 1.5rem; transition: all .4s; position: relative; overflow: hidden; }
+        .event-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg,var(--neon-cyan),var(--neon-magenta)); }
+        .event-card:hover { border-color: var(--neon-cyan); transform: translateY(-4px); }
+        .event-date { font-family: 'Orbitron', sans-serif; font-size: .65rem; font-weight: 700; letter-spacing: 2px; color: var(--neon-cyan); text-transform: uppercase; margin-bottom: .5rem; }
+        .event-name { font-family: 'Orbitron', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: .3rem; }
+        .event-desc { font-family: 'Exo 2', sans-serif; font-size: .85rem; color: var(--text-muted); }
+        .event-tag { display: inline-block; font-family: 'Orbitron', sans-serif; font-size: .55rem; font-weight: 700; letter-spacing: 1px; padding: .2rem .6rem; border-radius: 3px; margin-top: .8rem; }
+        .event-tag.soon { background: rgba(255,230,0,.1); color: var(--neon-yellow); border: 1px solid rgba(255,230,0,.2); }
+        .event-tag.open { background: rgba(57,255,20,.1); color: var(--neon-green); border: 1px solid rgba(57,255,20,.2); }
+
+        /* REVIEWS */
+        .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); gap: 1.5rem; max-width: 1000px; margin: 0 auto; }
+        .review-card { background: var(--card-bg); border: 1px solid var(--card-border); padding: 2rem; transition: all .4s; }
+        .review-card:hover { border-color: rgba(255,255,255,.1); transform: translateY(-4px); }
+        .review-stars { color: var(--gold); font-size: 1rem; letter-spacing: 2px; margin-bottom: .8rem; }
+        .review-text { font-family: 'Exo 2', sans-serif; font-size: .95rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1rem; font-style: italic; }
+        .review-author { font-family: 'Orbitron', sans-serif; font-size: .75rem; font-weight: 700; letter-spacing: 1px; color: var(--neon-cyan); }
+
+        /* FAQ */
+        .faq-container { max-width: 800px; margin: 0 auto; }
+        .faq-item { border: 1px solid var(--card-border); margin-bottom: .5rem; background: var(--card-bg); overflow: hidden; transition: all .3s; }
+        .faq-item:hover { border-color: rgba(255,255,255,.08); }
+        .faq-question { display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 1.5rem; cursor: pointer; font-family: 'Exo 2', sans-serif; font-size: 1rem; font-weight: 600; color: var(--text-primary); }
+        .faq-question:hover { color: var(--neon-cyan); }
+        .faq-arrow { width: 20px; height: 20px; transition: transform .3s; color: var(--text-muted); flex-shrink: 0; }
+        .faq-item.open .faq-arrow { transform: rotate(180deg); color: var(--neon-cyan); }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height .4s ease; }
+        .faq-item.open .faq-answer { max-height: 300px; }
+        .faq-answer-inner { padding: 0 1.5rem 1.2rem; font-family: 'Exo 2', sans-serif; font-size: .9rem; color: var(--text-muted); line-height: 1.7; }
+
+        /* RESERVATION */
+        .reservation-container { max-width: 600px; margin: 0 auto; background: var(--card-bg); border: 1px solid var(--card-border); padding: 2.5rem; clip-path: polygon(0 0,calc(100% - 20px) 0,100% 20px,100% 100%,20px 100%,0 calc(100% - 20px)); }
+        .form-group { margin-bottom: 1.2rem; }
+        .form-label { font-family: 'Orbitron', sans-serif; font-size: .65rem; font-weight: 700; letter-spacing: 2px; color: var(--text-muted); text-transform: uppercase; display: block; margin-bottom: .4rem; }
+        .form-input { width: 100%; padding: .8rem 1rem; background: rgba(255,255,255,.03); border: 1px solid var(--card-border); color: var(--text-primary); font-family: 'Exo 2', sans-serif; font-size: .95rem; border-radius: 4px; outline: none; transition: border-color .3s; }
+        .form-input:focus { border-color: var(--neon-cyan); }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .form-submit { width: 100%; font-family: 'Orbitron', sans-serif; font-size: .8rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--dark-bg); background: linear-gradient(135deg,var(--neon-cyan),var(--neon-magenta)); border: none; padding: 1rem; cursor: pointer; clip-path: polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px)); transition: all .3s; margin-top: .5rem; }
+        .form-submit:hover { transform: scale(1.02); box-shadow: 0 0 30px rgba(0,240,255,.3); }
+
+        /* LOCATION */
+        .location-wrapper { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: stretch; }
+        .location-map { border: 1px solid var(--card-border); overflow: hidden; clip-path: polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,16px 100%,0 calc(100% - 16px)); min-height: 320px; transition: all .4s; }
+        .location-map:hover { border-color: var(--neon-cyan); }
+        .location-map iframe { width: 100%; height: 100%; border: none; filter: grayscale(.6) contrast(1.1) brightness(.8); transition: filter .4s; }
+        .location-map:hover iframe { filter: grayscale(.2) contrast(1) brightness(.9); }
+        .location-info { background: var(--card-bg); border: 1px solid var(--card-border); padding: 2.5rem; display: flex; flex-direction: column; justify-content: center; clip-path: polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,16px 100%,0 calc(100% - 16px)); }
+        .location-info h3 { font-family: 'Orbitron', sans-serif; font-size: 1.2rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1.2rem; color: var(--neon-cyan); }
+        .location-detail { display: flex; align-items: flex-start; gap: .8rem; margin-bottom: 1rem; font-family: 'Exo 2', sans-serif; color: var(--text-muted); font-size: .95rem; }
+        .location-detail svg { width: 20px; height: 20px; flex-shrink: 0; color: var(--neon-cyan); margin-top: 2px; }
+        .location-btn { display: inline-flex; align-items: center; gap: .6rem; margin-top: 1.5rem; font-family: 'Orbitron', sans-serif; font-size: .7rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--dark-bg); background: var(--neon-cyan); border: none; padding: .8rem 1.5rem; text-decoration: none; clip-path: polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px)); transition: all .3s; cursor: pointer; }
+        .location-btn:hover { background: #fff; }
+
+        /* WHATSAPP */
+        .wa-widget { position: fixed; bottom: 2rem; right: 2rem; z-index: 9999; display: flex; flex-direction: column; align-items: flex-end; gap: .8rem; }
+        .wa-chat-box { background: #1a1a2e; border: 1px solid #25d366; border-radius: 16px 16px 4px 16px; width: 320px; overflow: hidden; box-shadow: 0 10px 40px rgba(37,211,102,.2); transform: scale(0) translateY(20px); transform-origin: bottom right; opacity: 0; transition: all .4s cubic-bezier(.34,1.56,.64,1); pointer-events: none; }
+        .wa-chat-box.open { transform: scale(1) translateY(0); opacity: 1; pointer-events: all; }
+        .wa-chat-header { background: #25d366; padding: 1rem 1.2rem; display: flex; align-items: center; gap: .8rem; }
+        .wa-chat-header-avatar { width: 40px; height: 40px; background: rgba(255,255,255,.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .wa-chat-header-avatar svg { width: 22px; height: 22px; fill: #fff; }
+        .wa-chat-header-info h4 { font-family: 'Exo 2', sans-serif; font-size: .95rem; font-weight: 700; color: #fff; }
+        .wa-chat-header-info span { font-family: 'Exo 2', sans-serif; font-size: .7rem; color: rgba(255,255,255,.8); }
+        .wa-chat-close { margin-left: auto; background: none; border: none; color: #fff; font-size: 1.3rem; cursor: pointer; opacity: .8; }
+        .wa-chat-body { padding: 1.2rem; background: #111120; }
+        .wa-message-bubble { background: #1e1e35; border: 1px solid rgba(37,211,102,.15); border-radius: 4px 12px 12px 12px; padding: .8rem 1rem; font-family: 'Exo 2', sans-serif; font-size: .9rem; color: var(--text-primary); line-height: 1.5; }
+        .wa-message-time { font-size: .65rem; color: var(--text-muted); text-align: right; margin-top: .4rem; }
+        .wa-chat-input { display: flex; gap: .5rem; padding: .8rem 1rem; border-top: 1px solid rgba(255,255,255,.05); background: #0e0e1a; }
+        .wa-chat-input input { flex: 1; background: #1a1a2e; border: 1px solid rgba(255,255,255,.08); border-radius: 20px; padding: .6rem 1rem; font-family: 'Exo 2', sans-serif; font-size: .85rem; color: #fff; outline: none; }
+        .wa-chat-input input:focus { border-color: #25d366; }
+        .wa-chat-input button { width: 38px; height: 38px; background: #25d366; border: none; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0; }
+        .wa-chat-input button svg { width: 18px; height: 18px; fill: #fff; }
+        .wa-fab { width: 60px; height: 60px; background: #25d366; border: none; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 20px rgba(37,211,102,.4); animation: waFabPulse 2.5s ease-in-out infinite; transition: all .3s; }
+        .wa-fab:hover { transform: scale(1.1); }
+        .wa-fab svg { width: 32px; height: 32px; fill: #fff; }
+        @keyframes waFabPulse { 0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.4)} 50%{box-shadow:0 4px 30px rgba(37,211,102,.7),0 0 0 10px rgba(37,211,102,.1)} }
+        .wa-fab-label { position: absolute; right: 75px; bottom: 15px; background: #1a1a2e; border: 1px solid rgba(37,211,102,.3); color: var(--text-primary); padding: .4rem .8rem; border-radius: 8px; font-family: 'Exo 2', sans-serif; font-size: .75rem; white-space: nowrap; opacity: 0; transform: translateX(10px); transition: all .3s; pointer-events: none; }
+        .wa-fab:hover + .wa-fab-label, .wa-fab-label.show { opacity: 1; transform: translateX(0); }
+
+        /* CAMPAIGN POPUP */
+        .popup-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.7); backdrop-filter: blur(8px); z-index: 10000; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity .4s; }
+        .popup-overlay.show { opacity: 1; pointer-events: all; }
+        .popup-box { background: var(--card-bg); border: 1px solid var(--neon-cyan); max-width: 420px; width: 90%; padding: 2.5rem; text-align: center; position: relative; clip-path: polygon(0 0,calc(100% - 20px) 0,100% 20px,100% 100%,20px 100%,0 calc(100% - 20px)); transform: scale(.8); transition: transform .4s; }
+        .popup-overlay.show .popup-box { transform: scale(1); }
+        .popup-close { position: absolute; top: 1rem; right: 1rem; background: none; border: none; color: var(--text-muted); font-size: 1.5rem; cursor: pointer; }
+        .popup-icon { font-size: 3rem; margin-bottom: 1rem; }
+        .popup-title { font-family: 'Orbitron', sans-serif; font-size: 1.2rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; margin-bottom: .5rem; background: linear-gradient(135deg,var(--neon-cyan),var(--neon-magenta)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .popup-desc { font-family: 'Exo 2', sans-serif; color: var(--text-muted); font-size: .9rem; margin-bottom: 1.5rem; line-height: 1.6; }
+        .popup-highlight { font-family: 'Orbitron', sans-serif; font-size: 1.8rem; font-weight: 900; color: var(--neon-green); margin-bottom: 1rem; }
+        .popup-btn { font-family: 'Orbitron', sans-serif; font-size: .75rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--dark-bg); background: linear-gradient(135deg,var(--neon-cyan),var(--neon-magenta)); border: none; padding: .9rem 2rem; cursor: pointer; transition: all .3s; }
+        .popup-btn:hover { transform: scale(1.05); box-shadow: 0 0 30px rgba(0,240,255,.3); }
+
+        /* FOOTER */
+        .footer { position: relative; z-index: 1; text-align: center; padding: 3rem 2rem; border-top: 1px solid var(--card-border); background: rgba(10,10,15,.8); }
+        [data-theme="light"] .footer { background: rgba(240,242,245,.8); }
+        .footer-logo { font-family: 'Orbitron', sans-serif; font-size: 1.2rem; font-weight: 800; color: var(--neon-cyan); letter-spacing: 3px; margin-bottom: .8rem; }
+        .footer-socials { display: flex; justify-content: center; gap: 1rem; margin-bottom: 1rem; }
+        .footer-social-link { display: flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 8px; border: 1px solid var(--card-border); color: var(--text-muted); text-decoration: none; transition: all .3s; }
+        .footer-social-link:hover { border-color: var(--neon-cyan); color: var(--neon-cyan); transform: translateY(-3px); }
+        .footer-social-link.ig:hover { border-color: #e1306c; color: #e1306c; }
+        .footer-social-link svg { width: 18px; height: 18px; }
+        .footer-location { font-family: 'Exo 2', sans-serif; color: var(--text-muted); font-size: .9rem; margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; gap: .4rem; }
+        .footer-location svg { width: 14px; height: 14px; }
+        .footer-copy { font-family: 'Exo 2', sans-serif; font-size: .75rem; color: rgba(122,122,154,.5); letter-spacing: 1px; }
+
+        .reveal { opacity: 0; transform: translateY(30px); transition: all .8s cubic-bezier(.25,.8,.25,1); }
         .reveal.visible { opacity: 1; transform: translateY(0); }
 
-        /* ===== RESPONSIVE ===== */
+        /* MOBILE */
         @media (max-width: 768px) {
-            .navbar {
-                padding: .8rem 1rem;
-                display: flex;
-                align-items: center;
-                flex-wrap: wrap;
-            }
-
-            .navbar.scrolled { padding: .5rem 1rem; }
-
-            .nav-left { flex: 1; }
-            .nav-logo { font-size: 1.1rem; }
-
-            .nav-right { gap: .5rem; }
-            .nav-fiber { display: none; }
-
-            .hamburger {
-                display: flex;
-                padding: 8px;
-                -webkit-tap-highlight-color: transparent;
-                touch-action: manipulation;
-            }
-
-            .hamburger span { width: 24px; height: 2px; }
-
-            .hamburger.active span:nth-child(1) {
-                transform: rotate(45deg) translate(5px, 5px);
-            }
+            .navbar { padding: .8rem 1rem; flex-wrap: wrap; }
+            .nav-left { flex: 1; } .nav-logo { font-size: 1.1rem; }
+            .nav-right { gap: .5rem; } .nav-fiber { display: none; }
+            .hamburger { display: flex; padding: 8px; }
+            .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
             .hamburger.active span:nth-child(2) { opacity: 0; }
-            .hamburger.active span:nth-child(3) {
-                transform: rotate(-45deg) translate(5px, -5px);
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .nav-links.active {
-                display: flex;
-                flex-direction: column;
-                flex-basis: 100%;
-                width: 100%;
-                order: 10;
-                gap: 0;
-                background: rgba(10,10,15,.98);
-                padding: 1rem 0;
-                margin-top: .8rem;
-                border-top: 1px solid rgba(0,240,255,.1);
-            }
-
-            .nav-links.active li a {
-                display: block;
-                padding: .8rem 1rem;
-                font-size: 1rem;
-                color: var(--text-primary);
-                border-bottom: 1px solid rgba(255,255,255,.03);
-            }
-
-            .nav-links.active li a:hover,
-            .nav-links.active li a:active {
-                color: var(--neon-cyan);
-                background: rgba(0,240,255,.05);
-            }
-
+            .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+            .nav-links { display: none; }
+            .nav-links.active { display: flex; flex-direction: column; flex-basis: 100%; width: 100%; order: 10; gap: 0; background: rgba(10,10,15,.98); padding: 1rem 0; margin-top: .8rem; border-top: 1px solid rgba(0,240,255,.1); }
+            .nav-links.active li a { display: block; padding: .8rem 1rem; font-size: 1rem; color: var(--text-primary); border-bottom: 1px solid rgba(255,255,255,.03); }
             .tiers-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
-            .location-wrapper { grid-template-columns: 1fr; }
+            .location-wrapper, .form-row { grid-template-columns: 1fr; }
             .location-map { min-height: 260px; }
-            .tournament-tabs { flex-wrap: wrap; }
-            .tournament-tab { font-size: .65rem; padding: .6rem 1.2rem; }
+            .tournament-tabs { flex-wrap: wrap; } .tournament-tab { font-size: .65rem; padding: .6rem 1rem; }
             .tournament-details { grid-template-columns: 1fr; }
-            .hero-features { gap: .8rem; }
-            .hero-feat { font-size: .75rem; padding: .3rem .7rem; }
-            .topup-grid { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
-
+            .hero-features { gap: .8rem; } .hero-feat { font-size: .75rem; padding: .3rem .7rem; }
+            .topup-grid { grid-template-columns: repeat(auto-fit,minmax(140px,1fr)); }
+            .gallery-grid { grid-template-columns: 1fr 1fr; }
+            .gallery-item { height: 160px; }
+            .reviews-grid { grid-template-columns: 1fr; }
             .wa-widget { right: 1rem; bottom: 1rem; }
             .wa-chat-box { width: calc(100vw - 2rem); max-width: 320px; }
-            .wa-fab { width: 54px; height: 54px; }
-            .wa-fab svg { width: 28px; height: 28px; }
+            .wa-fab { width: 54px; height: 54px; } .wa-fab svg { width: 28px; height: 28px; }
             .wa-fab-label { display: none; }
+            section { padding: 4rem 1rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- NAVBAR -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-left">
-            <a href="#" class="nav-logo">YILDIZ<span>.</span>ESPOR</a>
-            <a href="https://www.instagram.com/yildizesporkafe/" target="_blank" class="nav-ig" title="Instagram">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
-                </svg>
-            </a>
-        </div>
-        <ul class="nav-links" id="navLinks">
-            <li><a href="#hero">Ana Sayfa</a></li>
-            <li><a href="#topup">Bakiye</a></li>
-            <li><a href="#tiers">Bilgisayarlar</a></li>
-            <li><a href="#turnuva">Turnuvalar</a></li>
-            <li><a href="#konum">Konum</a></li>
-        </ul>
-        <div class="nav-right">
-            <div class="nav-fiber">ÖZEL METRO HAT<br>GİGABİT FİBER</div>
-            <button class="hamburger" id="hamburger" aria-label="Menü">
-                <span></span><span></span><span></span>
-            </button>
-        </div>
-    </nav>
-
-    <!-- HERO -->
-    <section class="hero" id="hero">
-        <div class="hero-bg"></div>
-        <div class="hero-particles" id="particles"></div>
-        <div class="hero-content">
-            <div class="hero-badge">Erzurum'un En Güçlü Oyun Arenası</div>
-            <h1 class="hero-title">
-                SINIRLARI ZORLA
-                <span class="hero-title-main hero-title-glow">YILDIZ E-SPOR</span>
-            </h1>
-            <p class="hero-subtitle">Elite Gaming Center</p>
-
-            <div class="hero-features">
-                <div class="hero-feat">
-                    <svg class="green" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-                    Özel Metro Hat &mdash; Gigabit Fiber
-                </div>
-                <div class="hero-feat">
-                    <svg class="cyan" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-                    Sıfır Lag &amp; Ping
-                </div>
-                <div class="hero-feat">
-                    <svg class="magenta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-                    540Hz Monitörler
-                </div>
-            </div>
-
-            <a href="#tiers" class="hero-cta">
-                <span>Keşfet</span>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
-        </div>
-        <div class="scroll-indicator">
-            <span>Aşağı Kaydır</span>
-            <div class="scroll-arrow"></div>
-        </div>
-    </section>
-
-    <!-- BAKIYE -->
-    <section class="topup-section" id="topup">
-        <div class="section-header reveal">
-            <div class="section-label">Bakiye Yükle</div>
-            <h2 class="section-title">Yükle & Kazan</h2>
-            <div class="section-line"></div>
-        </div>
-        <div class="topup-grid">
-            <div class="topup-card reveal">
-                <div class="topup-amount">100 <small>₺</small></div>
-                <div class="topup-bonus">+10 ₺ HEDİYE</div>
-            </div>
-            <div class="topup-card reveal">
-                <div class="topup-amount">200 <small>₺</small></div>
-                <div class="topup-bonus">+40 ₺ HEDİYE</div>
-            </div>
-            <div class="topup-card reveal">
-                <div class="topup-amount">500 <small>₺</small></div>
-                <div class="topup-bonus">+125 ₺ HEDİYE</div>
-            </div>
-            <div class="topup-card reveal">
-                <div class="topup-amount">750 <small>₺</small></div>
-                <div class="topup-bonus">+225 ₺ HEDİYE</div>
-            </div>
-            <div class="topup-card reveal">
-                <div class="topup-amount">1000 <small>₺</small></div>
-                <div class="topup-bonus">+300 ₺ HEDİYE</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- PC TIERS -->
-    <section class="tiers-section" id="tiers">
-        <div class="section-header reveal">
-            <div class="section-label">Sistem Seçenekleri</div>
-            <h2 class="section-title">Seviyeni Seç</h2>
-            <div class="section-line"></div>
-        </div>
-        <div class="tiers-grid">
-            <div class="tier-card silver reveal">
-                <div class="tier-icon">
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
-                    </svg>
-                </div>
-                <div class="tier-name">Silver</div>
-                <ul class="tier-specs">
-                    <li>280Hz Asus Monitör</li>
-                    <li>Intel Core i5</li>
-                    <li>RTX 3060</li>
-                    <li>Gaming Set</li>
-                </ul>
-                <div class="tier-price">35<small>₺/saat</small></div>
-            </div>
-            <div class="tier-card gold reveal">
-                <div class="tier-icon">
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
-                    </svg>
-                </div>
-                <div class="tier-name">Gold</div>
-                <ul class="tier-specs">
-                    <li>280Hz Asus Monitör</li>
-                    <li>Ryzen 7 7800X3D</li>
-                    <li>RTX 4060 Ti</li>
-                    <li>Özel Geniş Masa</li>
-                </ul>
-                <div class="tier-price">45<small>₺/saat</small></div>
-            </div>
-            <div class="tier-card platinum reveal">
-                <div class="tier-icon">
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
-                    </svg>
-                </div>
-                <div class="tier-name">Platinum</div>
-                <ul class="tier-specs">
-                    <li>360Hz Asus Monitör</li>
-                    <li>Ryzen 7 7800X3D</li>
-                    <li>RTX 4060 Ti</li>
-                    <li>Kablosuz ATK Set</li>
-                </ul>
-                <div class="tier-price">50<small>₺/saat</small></div>
-            </div>
-            <div class="tier-card diamond reveal">
-                <span class="tier-badge">VIP</span>
-                <div class="tier-icon">
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
-                    </svg>
-                </div>
-                <div class="tier-name">Diamond</div>
-                <ul class="tier-specs">
-                    <li>540Hz Asus Monitör</li>
-                    <li>Ryzen 7 7800X3D</li>
-                    <li>RTX 4060 Ti</li>
-                    <li>VIP Oyuncu Odası</li>
-                </ul>
-                <div class="tier-price">60<small>₺/saat</small></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- TURNUVA -->
-    <section class="tournament-section" id="turnuva">
-        <div class="section-header reveal">
-            <div class="section-label">Rekabet Arenası</div>
-            <h2 class="section-title">Turnuvalar</h2>
-            <div class="section-line"></div>
-        </div>
-        <div class="tournament-container reveal">
-            <div class="tournament-tabs">
-                <button class="tournament-tab lol active" data-game="lol">League of Legends</button>
-                <button class="tournament-tab cs" data-game="cs">CS2</button>
-                <button class="tournament-tab val" data-game="val">Valorant</button>
-            </div>
-
-            <!-- LoL Panel -->
-            <div class="tournament-panel lol active" data-panel="lol">
-                <div class="yakinda-overlay">
-                    <div class="yakinda-badge">YAKINDA</div>
-                    <div class="yakinda-sub">Turnuva detayları çok yakında açıklanacak</div>
-                </div>
-                <div class="tournament-game-header">
-                    <div class="tournament-game-icon lol">LoL</div>
-                    <div class="tournament-game-info">
-                        <h3>League of Legends Turnuvası</h3>
-                        <p>5v5 Summoner's Rift &mdash; Takım formatı</p>
-                    </div>
-                </div>
-                <div class="tournament-details">
-                    <div class="tournament-detail-item">
-                        <label>Format</label>
-                        <span>5v5 Takım</span>
-                    </div>
-                    <div class="tournament-detail-item">
-                        <label>Tarih</label>
-                        <span>Yakında</span>
-                    </div>
-                    <div class="tournament-detail-item">
-                        <label>Ödül Havuzu</label>
-                        <span>Açıklanacak</span>
-                    </div>
-                    <div class="tournament-detail-item">
-                        <label>Katılım</label>
-                        <span>Ücretsiz</span>
-                    </div>
-                </div>
-                <button class="tournament-apply-btn lol" disabled>Başvuru Yakında</button>
-            </div>
-
-            <!-- CS2 Panel -->
-            <div class="tournament-panel cs" data-panel="cs">
-                <div class="yakinda-overlay">
-                    <div class="yakinda-badge">YAKINDA</div>
-                    <div class="yakinda-sub">Turnuva detayları çok yakında açıklanacak</div>
-                </div>
-                <div class="tournament-game-header">
-                    <div class="tournament-game-icon cs">CS2</div>
-                    <div class="tournament-game-info">
-                        <h3>Counter-Strike 2 Turnuvası</h3>
-                        <p>5v5 Competitive &mdash; Takım formatı</p>
-                    </div>
-                </div>
-                <div class="tournament-details">
-                    <div class="tournament-detail-item">
-                        <label>Format</label>
-                        <span>5v5 Takım</span>
-                    </div>
-                    <div class="tournament-detail-item">
-                        <label>Tarih</label>
-                        <span>Yakında</span>
-                    </div>
-                    <div class="tournament-detail-item">
-                        <label>Ödül Havuzu</label>
-                        <span>Açıklanacak</span>
-                    </div>
-                    <div class="tournament-detail-item">
-                        <label>Katılım</label>
-                        <span>Ücretsiz</span>
-                    </div>
-                </div>
-                <button class="tournament-apply-btn cs" disabled>Başvuru Yakında</button>
-            </div>
-
-            <!-- Valorant Panel -->
-            <div class="tournament-panel val" data-panel="val">
-                <div class="yakinda-overlay">
-                    <div class="yakinda-badge">YAKINDA</div>
-                    <div class="yakinda-sub">Turnuva detayları çok yakında açıklanacak</div>
-                </div>
-                <div class="tournament-game-header">
-                    <div class="tournament-game-icon val">VAL</div>
-                    <div class="tournament-game-info">
-                        <h3>Valorant Turnuvası</h3>
-                        <p>5v5 Competitive &mdash; Takım formatı</p>
-                    </div>
-                </div>
-                <div class="tournament-details">
-                    <div class="tournament-detail-item">
-                        <label>Format</label>
-                        <span>5v5 Takım</span>
-                    </div>
-                    <div class="tournament-detail-item">
-                        <label>Tarih</label>
-                        <span>Yakında</span>
-                    </div>
-                    <div class="tournament-detail-item">
-                        <label>Ödül Havuzu</label>
-                        <span>Açıklanacak</span>
-                    </div>
-                    <div class="tournament-detail-item">
-                        <label>Katılım</label>
-                        <span>Ücretsiz</span>
-                    </div>
-                </div>
-                <button class="tournament-apply-btn val" disabled>Başvuru Yakında</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- KONUM -->
-    <section class="location-section" id="konum">
-        <div class="section-header reveal">
-            <div class="section-label">Neredeyiz?</div>
-            <h2 class="section-title">Konum</h2>
-            <div class="section-line"></div>
-        </div>
-        <div class="location-wrapper reveal">
-            <div class="location-map">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1500!2d41.2690435!3d39.9069648!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMznCsDU0JzI1LjEiTiA0McKwMTYnMDguNiJF!5e0!3m2!1str!2str!4v1700000000000" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
-            <div class="location-info">
-                <h3>Bizi Ziyaret Edin</h3>
-                <div class="location-detail">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                        <circle cx="12" cy="10" r="3"/>
-                    </svg>
-                    <span>Yakutiye, Erzurum</span>
-                </div>
-                <div class="location-detail">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
-                    </svg>
-                    <span>0544 450 73 34</span>
-                </div>
-                <div class="location-detail">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
-                    </svg>
-                    <span>Her gün hizmetinizdeyiz</span>
-                </div>
-                <a href="https://www.google.com/maps?q=39.9069648,41.2690435&z=17&hl=tr" target="_blank" class="location-btn">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                    Yol Tarifi Al
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- WHATSAPP WIDGET -->
-    <div class="wa-widget" id="waWidget">
-        <div class="wa-chat-box" id="waChatBox">
-            <div class="wa-chat-header">
-                <div class="wa-chat-header-avatar">
-                    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.627.616l4.584-1.208A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.94 9.94 0 01-5.332-1.546l-.37-.228-2.874.757.728-2.777-.248-.391A9.95 9.95 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
-                </div>
-                <div class="wa-chat-header-info">
-                    <h4>Yıldız E-Spor</h4>
-                    <span>Genellikle hızlı yanıt verir</span>
-                </div>
-                <button class="wa-chat-close" id="waChatClose">&times;</button>
-            </div>
-            <div class="wa-chat-body">
-                <div class="wa-message-bubble">
-                    Merhaba! 👋<br>Buyrun, nasıl yardımcı olabilirim?
-                </div>
-                <div class="wa-message-time">Şimdi</div>
-            </div>
-            <div class="wa-chat-input">
-                <input type="text" id="waInput" placeholder="Mesajınızı yazın..." />
-                <button id="waSendBtn">
-                    <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
-                </button>
-            </div>
-        </div>
-        <button class="wa-fab" id="waFab">
-            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.627.616l4.584-1.208A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.94 9.94 0 01-5.332-1.546l-.37-.228-2.874.757.728-2.777-.248-.391A9.95 9.95 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
-        </button>
-        <span class="wa-fab-label" id="waFabLabel">WhatsApp ile yazın</span>
+<!-- CAMPAIGN POPUP -->
+<div class="popup-overlay" id="campaignPopup">
+    <div class="popup-box">
+        <button class="popup-close" id="popupClose">&times;</button>
+        <div class="popup-icon">🎮</div>
+        <div class="popup-title">Hoş Geldin Kampanyası</div>
+        <div class="popup-desc">İlk ziyaretine özel bakiye yüklemelerinde ekstra bonus kazan!</div>
+        <div class="popup-highlight">%30 EKSTRA</div>
+        <button class="popup-btn" id="popupBtn">Hemen Yükle</button>
     </div>
+</div>
 
-    <!-- FOOTER -->
-    <footer class="footer">
-        <div class="footer-logo">YILDIZ E-SPOR</div>
-        <div class="footer-socials">
-            <a href="https://www.instagram.com/yildizesporkafe/" target="_blank" class="footer-social-link ig" title="Instagram">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
-                </svg>
-            </a>
-            <a href="https://wa.me/905444507334" target="_blank" class="footer-social-link" title="WhatsApp">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
-                </svg>
-            </a>
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+    <div class="nav-left">
+        <a href="#" class="nav-logo">YILDIZ<span>.</span>ESPOR</a>
+        <a href="https://www.instagram.com/yildizesporkafe/" target="_blank" class="nav-ig" title="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+    </div>
+    <ul class="nav-links" id="navLinks">
+        <li><a href="#hero">Ana Sayfa</a></li>
+        <li><a href="#topup">Bakiye</a></li>
+        <li><a href="#tiers">Bilgisayarlar</a></li>
+        <li><a href="#galeri">Galeri</a></li>
+        <li><a href="#turnuva">Turnuvalar</a></li>
+        <li><a href="#rezervasyon">Rezervasyon</a></li>
+        <li><a href="#konum">Konum</a></li>
+    </ul>
+    <div class="nav-right">
+        <div class="nav-fiber">ÖZEL METRO HAT<br>GİGABİT FİBER</div>
+        <button class="theme-toggle" id="themeToggle" title="Tema Değiştir">
+            <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        </button>
+        <button class="hamburger" id="hamburger" aria-label="Menü"><span></span><span></span><span></span></button>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-particles" id="particles"></div>
+    <div class="hero-content">
+        <div class="hero-badge">Erzurum'un En Güçlü Oyun Arenası</div>
+        <h1 class="hero-title">SINIRLARI ZORLA<span class="hero-title-main hero-title-glow">YILDIZ E-SPOR</span></h1>
+        <p class="hero-subtitle">Elite Gaming Center</p>
+        <div class="hero-features">
+            <div class="hero-feat"><svg class="green" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>Özel Metro Hat — Gigabit Fiber</div>
+            <div class="hero-feat"><svg class="cyan" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Sıfır Lag &amp; Ping</div>
+            <div class="hero-feat"><svg class="magenta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>540Hz Monitörler</div>
         </div>
-        <div class="footer-location">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                <circle cx="12" cy="10" r="3"/>
-            </svg>
-            Yakutiye, Erzurum
+        <a href="#tiers" class="hero-cta"><span>Keşfet</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+    <div class="scroll-indicator"><span>Aşağı Kaydır</span><div class="scroll-arrow"></div></div>
+</section>
+
+<!-- BAKIYE -->
+<section id="topup">
+    <div class="section-header reveal"><div class="section-label">Bakiye Yükle</div><h2 class="section-title">Yükle & Kazan</h2><div class="section-line"></div></div>
+    <div class="topup-grid">
+        <div class="topup-card reveal"><div class="topup-amount">100 <small>₺</small></div><div class="topup-bonus">+10 ₺ HEDİYE</div></div>
+        <div class="topup-card reveal"><div class="topup-amount">200 <small>₺</small></div><div class="topup-bonus">+40 ₺ HEDİYE</div></div>
+        <div class="topup-card reveal"><div class="topup-amount">500 <small>₺</small></div><div class="topup-bonus">+125 ₺ HEDİYE</div></div>
+        <div class="topup-card reveal"><div class="topup-amount">750 <small>₺</small></div><div class="topup-bonus">+225 ₺ HEDİYE</div></div>
+        <div class="topup-card reveal"><div class="topup-amount">1000 <small>₺</small></div><div class="topup-bonus">+300 ₺ HEDİYE</div></div>
+    </div>
+</section>
+
+<!-- PC TIERS -->
+<section id="tiers">
+    <div class="section-header reveal"><div class="section-label">Sistem Seçenekleri</div><h2 class="section-title">Seviyeni Seç</h2><div class="section-line"></div></div>
+    <div class="tiers-grid">
+        <div class="tier-card silver reveal"><div class="tier-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div><div class="tier-name">Silver</div><ul class="tier-specs"><li>280Hz Asus Monitör</li><li>Intel Core i5</li><li>RTX 3060</li><li>Gaming Set</li></ul><div class="tier-price">35<small>₺/saat</small></div></div>
+        <div class="tier-card gold reveal"><div class="tier-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div><div class="tier-name">Gold</div><ul class="tier-specs"><li>280Hz Asus Monitör</li><li>Ryzen 7 7800X3D</li><li>RTX 4060 Ti</li><li>Özel Geniş Masa</li></ul><div class="tier-price">45<small>₺/saat</small></div></div>
+        <div class="tier-card platinum reveal"><div class="tier-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div><div class="tier-name">Platinum</div><ul class="tier-specs"><li>360Hz Asus Monitör</li><li>Ryzen 7 7800X3D</li><li>RTX 4060 Ti</li><li>Kablosuz ATK Set</li></ul><div class="tier-price">50<small>₺/saat</small></div></div>
+        <div class="tier-card diamond reveal"><span class="tier-badge">VIP</span><div class="tier-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg></div><div class="tier-name">Diamond</div><ul class="tier-specs"><li>540Hz Asus Monitör</li><li>Ryzen 7 7800X3D</li><li>RTX 4060 Ti</li><li>VIP Oyuncu Odası</li></ul><div class="tier-price">60<small>₺/saat</small></div></div>
+    </div>
+</section>
+
+<!-- PRICE CALCULATOR -->
+<section id="hesapla">
+    <div class="section-header reveal"><div class="section-label">Fiyat Hesapla</div><h2 class="section-title">Ne Kadar Tutar?</h2><div class="section-line"></div></div>
+    <div class="calc-container reveal">
+        <div class="calc-row">
+            <label class="calc-label">Bilgisayar Seç</label>
+            <select class="calc-select" id="calcTier">
+                <option value="35">Silver — 35₺/saat</option>
+                <option value="45">Gold — 45₺/saat</option>
+                <option value="50">Platinum — 50₺/saat</option>
+                <option value="60">Diamond — 60₺/saat</option>
+            </select>
         </div>
-        <div class="footer-copy">© 2026 Yıldız E-Spor — Tüm hakları saklıdır.</div>
-    </footer>
+        <div class="calc-row">
+            <label class="calc-label">Süre (Saat)</label>
+            <div class="calc-hours">
+                <input type="range" id="calcHours" min="1" max="12" value="2">
+                <span class="calc-hours-val" id="calcHoursVal">2 saat</span>
+            </div>
+        </div>
+        <div class="calc-result">
+            <div class="calc-total" id="calcTotal">70<small> ₺</small></div>
+        </div>
+    </div>
+</section>
 
-    <script>
-        // Particles
-        const particlesEl = document.getElementById('particles');
-        for (let i = 0; i < 40; i++) {
-            const p = document.createElement('div');
-            p.className = 'particle';
-            p.style.left = Math.random() * 100 + '%';
-            p.style.animationDuration = (Math.random() * 8 + 6) + 's';
-            p.style.animationDelay = (Math.random() * 10) + 's';
-            p.style.width = p.style.height = (Math.random() * 3 + 1) + 'px';
-            if (Math.random() > .7) p.style.background = '#ff00e5';
-            particlesEl.appendChild(p);
-        }
+<!-- GALLERY -->
+<section id="galeri">
+    <div class="section-header reveal"><div class="section-label">Mekanımız</div><h2 class="section-title">Galeri</h2><div class="section-line"></div></div>
+    <div class="gallery-grid">
+        <div class="gallery-item reveal"><div class="gallery-placeholder gp-1">Gaming Alan</div></div>
+        <div class="gallery-item reveal"><div class="gallery-placeholder gp-2">VIP Oda</div></div>
+        <div class="gallery-item reveal"><div class="gallery-placeholder gp-3">Turnuva Alanı</div></div>
+        <div class="gallery-item reveal"><div class="gallery-placeholder gp-4">Ekipman</div></div>
+        <div class="gallery-item reveal"><div class="gallery-placeholder gp-5">Lobi</div></div>
+        <div class="gallery-item reveal"><div class="gallery-placeholder gp-6">Atmosfer</div></div>
+    </div>
+</section>
 
-        // Navbar scroll
-        window.addEventListener('scroll', () => {
-            document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
-        });
+<!-- TURNUVA -->
+<section id="turnuva">
+    <div class="section-header reveal"><div class="section-label">Rekabet Arenası</div><h2 class="section-title">Turnuvalar</h2><div class="section-line"></div></div>
+    <div class="tournament-container reveal">
+        <div class="tournament-tabs">
+            <button class="tournament-tab lol active" data-game="lol">League of Legends</button>
+            <button class="tournament-tab cs" data-game="cs">CS2</button>
+            <button class="tournament-tab val" data-game="val">Valorant</button>
+        </div>
+        <div class="tournament-panel lol active" data-panel="lol"><div class="yakinda-overlay"><div class="yakinda-badge">YAKINDA</div><div class="yakinda-sub">Turnuva detayları çok yakında açıklanacak</div></div><div class="tournament-game-header"><div class="tournament-game-icon lol">LoL</div><div class="tournament-game-info"><h3>LoL Turnuvası</h3><p>5v5 Summoner's Rift</p></div></div><div class="tournament-details"><div class="tournament-detail-item"><label>Format</label><span>5v5 Takım</span></div><div class="tournament-detail-item"><label>Tarih</label><span>Yakında</span></div><div class="tournament-detail-item"><label>Ödül</label><span>Açıklanacak</span></div><div class="tournament-detail-item"><label>Katılım</label><span>Ücretsiz</span></div></div><button class="tournament-apply-btn" disabled>Başvuru Yakında</button></div>
+        <div class="tournament-panel cs" data-panel="cs"><div class="yakinda-overlay"><div class="yakinda-badge">YAKINDA</div><div class="yakinda-sub">Turnuva detayları çok yakında açıklanacak</div></div><div class="tournament-game-header"><div class="tournament-game-icon cs">CS2</div><div class="tournament-game-info"><h3>CS2 Turnuvası</h3><p>5v5 Competitive</p></div></div><div class="tournament-details"><div class="tournament-detail-item"><label>Format</label><span>5v5 Takım</span></div><div class="tournament-detail-item"><label>Tarih</label><span>Yakında</span></div><div class="tournament-detail-item"><label>Ödül</label><span>Açıklanacak</span></div><div class="tournament-detail-item"><label>Katılım</label><span>Ücretsiz</span></div></div><button class="tournament-apply-btn" disabled>Başvuru Yakında</button></div>
+        <div class="tournament-panel val" data-panel="val"><div class="yakinda-overlay"><div class="yakinda-badge">YAKINDA</div><div class="yakinda-sub">Turnuva detayları çok yakında açıklanacak</div></div><div class="tournament-game-header"><div class="tournament-game-icon val">VAL</div><div class="tournament-game-info"><h3>Valorant Turnuvası</h3><p>5v5 Competitive</p></div></div><div class="tournament-details"><div class="tournament-detail-item"><label>Format</label><span>5v5 Takım</span></div><div class="tournament-detail-item"><label>Tarih</label><span>Yakında</span></div><div class="tournament-detail-item"><label>Ödül</label><span>Açıklanacak</span></div><div class="tournament-detail-item"><label>Katılım</label><span>Ücretsiz</span></div></div><button class="tournament-apply-btn" disabled>Başvuru Yakında</button></div>
+    </div>
+</section>
 
-        // Hamburger menu
-        const hamburgerBtn = document.getElementById('hamburger');
-        const navLinksEl = document.getElementById('navLinks');
+<!-- ETKİNLİK TAKVİMİ -->
+<section id="etkinlik">
+    <div class="section-header reveal"><div class="section-label">Takvim</div><h2 class="section-title">Yaklaşan Etkinlikler</h2><div class="section-line"></div></div>
+    <div class="events-grid">
+        <div class="event-card reveal"><div class="event-date">Mart 2026</div><div class="event-name">LoL 5v5 Turnuvası</div><div class="event-desc">Takımını kur, Erzurum şampiyonu ol!</div><span class="event-tag soon">Yakında</span></div>
+        <div class="event-card reveal"><div class="event-date">Mart 2026</div><div class="event-name">CS2 Turnuvası</div><div class="event-desc">5v5 competitive formatında heyecan dolu maçlar.</div><span class="event-tag soon">Yakında</span></div>
+        <div class="event-card reveal"><div class="event-date">Nisan 2026</div><div class="event-name">Valorant Gecesi</div><div class="event-desc">Özel Valorant gecesi ve mini turnuva.</div><span class="event-tag soon">Yakında</span></div>
+    </div>
+</section>
 
-        hamburgerBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            this.classList.toggle('active');
-            navLinksEl.classList.toggle('active');
-        });
+<!-- MÜŞTERİ YORUMLARI -->
+<section id="yorumlar">
+    <div class="section-header reveal"><div class="section-label">Oyuncular Ne Diyor?</div><h2 class="section-title">Yorumlar</h2><div class="section-line"></div></div>
+    <div class="reviews-grid">
+        <div class="review-card reveal"><div class="review-stars">★★★★★</div><div class="review-text">"Erzurum'da böyle bir mekan beklemiyordum. Bilgisayarlar çok güçlü, ping sıfır. Her gün geliyorum artık."</div><div class="review-author">— Ahmet K.</div></div>
+        <div class="review-card reveal"><div class="review-stars">★★★★★</div><div class="review-text">"VIP oda muhteşem. Arkadaşlarla özel turnuva yapıyoruz. Fiyatlar da gayet uygun."</div><div class="review-author">— Mehmet Y.</div></div>
+        <div class="review-card reveal"><div class="review-stars">★★★★★</div><div class="review-text">"540Hz monitörde Valorant oynamak başka bir deneyim. Personel de çok ilgili."</div><div class="review-author">— Elif S.</div></div>
+    </div>
+</section>
 
-        // Close menu when a nav link is clicked
-        navLinksEl.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                hamburgerBtn.classList.remove('active');
-                navLinksEl.classList.remove('active');
-            });
-        });
+<!-- SSS -->
+<section id="sss">
+    <div class="section-header reveal"><div class="section-label">Merak Edilenler</div><h2 class="section-title">Sıkça Sorulan Sorular</h2><div class="section-line"></div></div>
+    <div class="faq-container">
+        <div class="faq-item reveal"><div class="faq-question">Çalışma saatleriniz nedir?<svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-answer"><div class="faq-answer-inner">Her gün 10:00 - 02:00 saatleri arasında hizmet veriyoruz.</div></div></div>
+        <div class="faq-item reveal"><div class="faq-question">Rezervasyon yapılabiliyor mu?<svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-answer"><div class="faq-answer-inner">Evet! Web sitemiz üzerinden veya WhatsApp ile rezervasyon yapabilirsiniz.</div></div></div>
+        <div class="faq-item reveal"><div class="faq-question">Bakiye yükleme nasıl çalışıyor?<svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-answer"><div class="faq-answer-inner">Mekanda nakit veya kart ile bakiye yükleyebilirsiniz. Yüklediğiniz tutara göre bonus hediye bakiye kazanırsınız.</div></div></div>
+        <div class="faq-item reveal"><div class="faq-question">VIP oda nedir?<svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-answer"><div class="faq-answer-inner">Diamond paketimiz özel VIP oyuncu odasında 540Hz monitör, en üst düzey donanım ve sessiz ortam sunuyor. Arkadaşlarınızla özel turnuva yapabilirsiniz.</div></div></div>
+        <div class="faq-item reveal"><div class="faq-question">Yaş sınırı var mı?<svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-answer"><div class="faq-answer-inner">18 yaş altı misafirlerimiz saat 22:00'ye kadar mekanımızda kalabilir.</div></div></div>
+    </div>
+</section>
 
-        // Close menu on outside click
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.navbar')) {
-                hamburgerBtn.classList.remove('active');
-                navLinksEl.classList.remove('active');
-            }
-        });
+<!-- REZERVASYON -->
+<section id="rezervasyon">
+    <div class="section-header reveal"><div class="section-label">Yerinizi Ayırtın</div><h2 class="section-title">Online Rezervasyon</h2><div class="section-line"></div></div>
+    <div class="reservation-container reveal">
+        <div class="form-group"><label class="form-label">Ad Soyad</label><input class="form-input" type="text" id="rezName" placeholder="Adınız Soyadınız"></div>
+        <div class="form-row">
+            <div class="form-group"><label class="form-label">Tarih</label><input class="form-input" type="date" id="rezDate"></div>
+            <div class="form-group"><label class="form-label">Saat</label><select class="form-input" id="rezTime"><option>10:00</option><option>11:00</option><option>12:00</option><option>13:00</option><option>14:00</option><option>15:00</option><option>16:00</option><option>17:00</option><option>18:00</option><option>19:00</option><option>20:00</option><option>21:00</option><option>22:00</option><option>23:00</option></select></div>
+        </div>
+        <div class="form-row">
+            <div class="form-group"><label class="form-label">Bilgisayar</label><select class="form-input" id="rezTier"><option>Silver</option><option>Gold</option><option>Platinum</option><option>Diamond (VIP)</option></select></div>
+            <div class="form-group"><label class="form-label">Süre</label><select class="form-input" id="rezDuration"><option>1 Saat</option><option>2 Saat</option><option>3 Saat</option><option>4 Saat</option><option>5+ Saat</option></select></div>
+        </div>
+        <button class="form-submit" id="rezSubmit">WhatsApp ile Rezervasyon Yap</button>
+    </div>
+</section>
 
-        // Reveal on scroll
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry, i) => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => entry.target.classList.add('visible'), i * 100);
-                }
-            });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+<!-- KONUM -->
+<section id="konum">
+    <div class="section-header reveal"><div class="section-label">Neredeyiz?</div><h2 class="section-title">Konum</h2><div class="section-line"></div></div>
+    <div class="location-wrapper reveal">
+        <div class="location-map"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1500!2d41.2690435!3d39.9069648!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMznCsDU0JzI1LjEiTiA0McKwMTYnMDguNiJF!5e0!3m2!1str!2str!4v1700000000000" allowfullscreen loading="lazy"></iframe></div>
+        <div class="location-info">
+            <h3>Bizi Ziyaret Edin</h3>
+            <div class="location-detail"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Yakutiye, Erzurum</span></div>
+            <div class="location-detail"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>0544 450 73 34</span></div>
+            <div class="location-detail"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span>Her gün 10:00 - 02:00</span></div>
+            <a href="https://www.google.com/maps?q=39.9069648,41.2690435&z=17&hl=tr" target="_blank" class="location-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Yol Tarifi Al</a>
+        </div>
+    </div>
+</section>
 
-        // Tournament tabs (works on mobile touch too)
-        document.querySelectorAll('.tournament-tab').forEach(tab => {
-            tab.addEventListener('click', function(e) {
-                e.preventDefault();
-                const game = this.dataset.game;
-                document.querySelectorAll('.tournament-tab').forEach(t => t.classList.remove('active'));
-                document.querySelectorAll('.tournament-panel').forEach(p => p.classList.remove('active'));
-                this.classList.add('active');
-                document.querySelector('.tournament-panel[data-panel="' + game + '"]').classList.add('active');
-            });
-        });
+<!-- WHATSAPP -->
+<div class="wa-widget" id="waWidget">
+    <div class="wa-chat-box" id="waChatBox">
+        <div class="wa-chat-header">
+            <div class="wa-chat-header-avatar"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.627.616l4.584-1.208A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.94 9.94 0 01-5.332-1.546l-.37-.228-2.874.757.728-2.777-.248-.391A9.95 9.95 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg></div>
+            <div class="wa-chat-header-info"><h4>Yıldız E-Spor</h4><span>Genellikle hızlı yanıt verir</span></div>
+            <button class="wa-chat-close" id="waChatClose">&times;</button>
+        </div>
+        <div class="wa-chat-body"><div class="wa-message-bubble">Merhaba! 👋<br>Buyrun, nasıl yardımcı olabilirim?</div><div class="wa-message-time">Şimdi</div></div>
+        <div class="wa-chat-input"><input type="text" id="waInput" placeholder="Mesajınızı yazın..."><button id="waSendBtn"><svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button></div>
+    </div>
+    <button class="wa-fab" id="waFab"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.627.616l4.584-1.208A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.94 9.94 0 01-5.332-1.546l-.37-.228-2.874.757.728-2.777-.248-.391A9.95 9.95 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg></button>
+    <span class="wa-fab-label" id="waFabLabel">WhatsApp ile yazın</span>
+</div>
 
-        // WhatsApp Widget
-        var waFab = document.getElementById('waFab');
-        var waChatBox = document.getElementById('waChatBox');
-        var waChatClose = document.getElementById('waChatClose');
-        var waInput = document.getElementById('waInput');
-        var waSendBtn = document.getElementById('waSendBtn');
-        var waFabLabel = document.getElementById('waFabLabel');
-        var waPhone = '905444507334';
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-logo">YILDIZ E-SPOR</div>
+    <div class="footer-socials">
+        <a href="https://www.instagram.com/yildizesporkafe/" target="_blank" class="footer-social-link ig" title="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        <a href="https://wa.me/905444507334" target="_blank" class="footer-social-link" title="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></a>
+    </div>
+    <div class="footer-location"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Yakutiye, Erzurum</div>
+    <div class="footer-copy">© 2026 Yıldız E-Spor — Tüm hakları saklıdır.</div>
+</footer>
 
-        setTimeout(function() {
-            waFabLabel.classList.add('show');
-            setTimeout(function() { waFabLabel.classList.remove('show'); }, 4000);
-        }, 3000);
+<script>
+// Particles
+var pe = document.getElementById('particles');
+for (var i = 0; i < 40; i++) { var p = document.createElement('div'); p.className = 'particle'; p.style.left = Math.random()*100+'%'; p.style.animationDuration = (Math.random()*8+6)+'s'; p.style.animationDelay = (Math.random()*10)+'s'; p.style.width = p.style.height = (Math.random()*3+1)+'px'; if(Math.random()>.7) p.style.background='#ff00e5'; pe.appendChild(p); }
 
-        setTimeout(function() {
-            if (!waChatBox.classList.contains('open')) waChatBox.classList.add('open');
-        }, 5000);
+// Navbar scroll
+window.addEventListener('scroll', function(){ document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50); });
 
-        waFab.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            waChatBox.classList.toggle('open');
-        });
+// Hamburger
+var hb = document.getElementById('hamburger'), nl = document.getElementById('navLinks');
+hb.addEventListener('click', function(e){ e.preventDefault(); e.stopPropagation(); this.classList.toggle('active'); nl.classList.toggle('active'); });
+nl.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ hb.classList.remove('active'); nl.classList.remove('active'); }); });
+document.addEventListener('click', function(e){ if(!e.target.closest('.navbar')){ hb.classList.remove('active'); nl.classList.remove('active'); } });
 
-        waChatClose.addEventListener('click', function(e) {
-            e.preventDefault();
-            waChatBox.classList.remove('open');
-        });
+// Reveal
+var obs = new IntersectionObserver(function(entries){ entries.forEach(function(e,i){ if(e.isIntersecting) setTimeout(function(){ e.target.classList.add('visible'); }, i*100); }); }, {threshold:.1});
+document.querySelectorAll('.reveal').forEach(function(el){ obs.observe(el); });
 
-        function sendToWhatsApp() {
-            var msg = waInput.value.trim();
-            if (msg) {
-                window.open('https://wa.me/' + waPhone + '?text=' + encodeURIComponent(msg), '_blank');
-                waInput.value = '';
-            } else {
-                window.open('https://wa.me/' + waPhone, '_blank');
-            }
-        }
+// Theme toggle
+var tt = document.getElementById('themeToggle');
+tt.addEventListener('click', function(){
+    var d = document.documentElement;
+    d.setAttribute('data-theme', d.getAttribute('data-theme')==='light' ? '' : 'light');
+});
 
-        waSendBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            sendToWhatsApp();
-        });
+// Tournament tabs
+document.querySelectorAll('.tournament-tab').forEach(function(tab){
+    tab.addEventListener('click', function(e){
+        e.preventDefault();
+        var g = this.dataset.game;
+        document.querySelectorAll('.tournament-tab').forEach(function(t){ t.classList.remove('active'); });
+        document.querySelectorAll('.tournament-panel').forEach(function(p){ p.classList.remove('active'); });
+        this.classList.add('active');
+        document.querySelector('.tournament-panel[data-panel="'+g+'"]').classList.add('active');
+    });
+});
 
-        waInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') sendToWhatsApp();
-        });
-    </script>
+// Price Calculator
+var ct = document.getElementById('calcTier'), ch = document.getElementById('calcHours'), cv = document.getElementById('calcHoursVal'), cr = document.getElementById('calcTotal');
+function updateCalc(){ var t = parseInt(ct.value)*parseInt(ch.value); cv.textContent = ch.value+' saat'; cr.innerHTML = t+'<small> ₺</small>'; }
+ct.addEventListener('change', updateCalc); ch.addEventListener('input', updateCalc);
+
+// FAQ
+document.querySelectorAll('.faq-question').forEach(function(q){
+    q.addEventListener('click', function(){ this.parentElement.classList.toggle('open'); });
+});
+
+// Reservation
+document.getElementById('rezSubmit').addEventListener('click', function(e){
+    e.preventDefault();
+    var n = document.getElementById('rezName').value || 'Belirtilmedi';
+    var d = document.getElementById('rezDate').value || 'Belirtilmedi';
+    var t = document.getElementById('rezTime').value;
+    var tier = document.getElementById('rezTier').value;
+    var dur = document.getElementById('rezDuration').value;
+    var msg = 'Merhaba! Rezervasyon yapmak istiyorum.\n\nAd: '+n+'\nTarih: '+d+'\nSaat: '+t+'\nBilgisayar: '+tier+'\nSüre: '+dur;
+    window.open('https://wa.me/905444507334?text='+encodeURIComponent(msg), '_blank');
+});
+
+// Campaign Popup
+var cp = document.getElementById('campaignPopup');
+setTimeout(function(){
+    if(!sessionStorage.getItem('popup_closed')) cp.classList.add('show');
+}, 3000);
+document.getElementById('popupClose').addEventListener('click', function(){ cp.classList.remove('show'); sessionStorage.setItem('popup_closed','1'); });
+document.getElementById('popupBtn').addEventListener('click', function(){ cp.classList.remove('show'); sessionStorage.setItem('popup_closed','1'); document.getElementById('topup').scrollIntoView({behavior:'smooth'}); });
+cp.addEventListener('click', function(e){ if(e.target===cp){ cp.classList.remove('show'); sessionStorage.setItem('popup_closed','1'); } });
+
+// WhatsApp
+var wf = document.getElementById('waFab'), wc = document.getElementById('waChatBox'), wx = document.getElementById('waChatClose'), wi = document.getElementById('waInput'), ws = document.getElementById('waSendBtn'), wl = document.getElementById('waFabLabel');
+setTimeout(function(){ wl.classList.add('show'); setTimeout(function(){ wl.classList.remove('show'); },4000); },4000);
+setTimeout(function(){ if(!wc.classList.contains('open')) wc.classList.add('open'); },6000);
+wf.addEventListener('click', function(e){ e.preventDefault(); e.stopPropagation(); wc.classList.toggle('open'); });
+wx.addEventListener('click', function(e){ e.preventDefault(); wc.classList.remove('open'); });
+function sendWA(){ var m=wi.value.trim(); window.open('https://wa.me/905444507334'+(m?'?text='+encodeURIComponent(m):''),'_blank'); wi.value=''; }
+ws.addEventListener('click', function(e){ e.preventDefault(); sendWA(); });
+wi.addEventListener('keypress', function(e){ if(e.key==='Enter') sendWA(); });
+
+// PWA
+if('serviceWorker' in navigator){ navigator.serviceWorker.register('sw.js').catch(function(){}); }
+</script>
 </body>
 </html>

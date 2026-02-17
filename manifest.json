@@ -1,0 +1,17 @@
+{
+  "name": "Yıldız E-Spor",
+  "short_name": "Yıldız",
+  "description": "Erzurum'un En Güçlü Oyun Arenası",
+  "start_url": "/yildizespor/",
+  "display": "standalone",
+  "background_color": "#0a0a0f",
+  "theme_color": "#00f0ff",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230a0a0f'/><text x='50' y='38' text-anchor='middle' font-size='28' font-weight='900' fill='%2300f0ff' font-family='sans-serif'>YILDIZ</text><text x='50' y='68' text-anchor='middle' font-size='20' font-weight='700' fill='%23ff00e5' font-family='sans-serif'>E-SPOR</text></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    }
+  ]
+}
